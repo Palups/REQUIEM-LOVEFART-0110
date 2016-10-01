@@ -1,4 +1,5 @@
 #include "ofApp.h"
+#include "intObject.h"
 
 bool click = false;  // Booleana para avaliar condição no sistema de troca da imagem dos lados.
 
