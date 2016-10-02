@@ -20,7 +20,11 @@ void ofApp::setup() {
 	bplay.centroy = (ofGetWindowHeight() / 2 - bplay.tamY / 2) + (logo.tamY / 2 + 50); // centro y botão
 	bplay.x = ofGetWindowWidth() / 2 - bplay.tamX / 2; // rever 
 	bplay.y = bplay.centroy;//ofGetWindowHeight() / 2 - bplay.tamY / 2; rever
-	light = 0; // setando light para 0 para o fundo ser preto
+	light = 255; // setando light para 0 para o fundo ser preto
+	opacity = 0;
+	bilhete.setPosition(200, 300);
+	bilhete.setSize(20, 20);
+	
 }
 
 //--------------------------------------------------------------
@@ -29,8 +33,9 @@ void ofApp::update() {
 	{
 		if (click) // ao clicar
 		{
-			light += 2; // fundo esbranquece aos poucos
-			if (light >= 255) // qnd branco muda para o gameplay
+			light -= 2;
+			opacity += 2;// fundo esbranquece aos poucos
+			if (light <=0) // qnd branco muda para o gameplay
 			{
 				estadoJogo = GAMEPLAY;
 			}
@@ -43,7 +48,9 @@ void ofApp::draw() {
 	if (estadoJogo == MENU) // desenha a logo e define a cor do fundo do menu
 	{
 		ofBackground(light, light, light);
+		ofSetColor(255, 255, 255, opacity);
 		logo.sprite.draw(logo.x, logo.y);
+		ofSetColor(255, 255, 255, 255);
 		bplay.sprite.draw(bplay.centrox, bplay.centroy);
 
 	}
@@ -52,7 +59,10 @@ void ofApp::draw() {
 		{
 			// Se click for verdadeiro, desenha a imagem do lado 1. Se for falso, desenha a imagem do lado 2.
 			if (click)
+			{
 				lado1.sprite.draw(0, 0);
+				bilhete.draw();
+			}
 			else
 				lado2.sprite.draw(0, 0);
 
@@ -91,7 +101,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 	else if (estadoJogo == GAMEPLAY) // mudança de tela no gameplay
 	{
 		// Se as coordenadas X e Y do mouse estiverem entre as descritas abaixo, click é alterado e troca a imagem entre lado 1 e 2.
-		if (x > 487 && x < 537 && y > 700 && y < 750)
+		if (x > 487 && x < 537 && y > 700 && y < 750 && button == 0)
 			click = !click;
 	}
 }

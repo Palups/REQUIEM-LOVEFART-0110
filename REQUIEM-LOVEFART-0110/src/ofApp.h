@@ -39,4 +39,7 @@ public:
 	image logo;   //variavel para a logo
 	image bplay; // variavel para o botão de inicio
 	int light; //variavel para cor do background
+	int opacity;
+
+	intObject bilhete;
 };
