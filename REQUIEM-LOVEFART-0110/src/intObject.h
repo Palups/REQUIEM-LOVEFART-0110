@@ -32,6 +32,15 @@ public:
 	//Funcao que vai ser colocada no update do ofApp
 	void update();
 
+	//Funcao que pega a posição X do objeto
+	int getX();
+
+	//Funcao que pega a posição Y do objeto
+	int getY();
+
+	//pega o display_dialog da função pressed
+	bool getDialog();
+
 private:
 
 	int object_x, object_y; //Coordenadas do objeto	

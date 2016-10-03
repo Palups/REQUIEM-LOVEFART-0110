@@ -24,7 +24,12 @@ void ofApp::setup() {
 	opacity = 0;
 	bilhete.setPosition(200, 300);
 	bilhete.setSize(20, 20);
-	
+
+	//legendas provisorias
+	leg.posx = 0;
+	leg.posy = 658;
+	leg.sprite.loadImage("images/barraleg.png");
+	leg.numLeg = 1;
 }
 
 //--------------------------------------------------------------
@@ -34,12 +39,17 @@ void ofApp::update() {
 		if (click) // ao clicar
 		{
 			light -= 2;
-			opacity += 2;// fundo esbranquece aos poucos
-			if (light <=0) // qnd branco muda para o gameplay
+			opacity += 2;// fundo escurece aos poucos
+			if (light <=0) // qnd preto muda para o gameplay
 			{
 				estadoJogo = GAMEPLAY;
 			}
 		}
+	}
+	if (estadoJogo == GAMEPLAY)
+	{
+		
+		
 	}
 }
 
@@ -48,7 +58,7 @@ void ofApp::draw() {
 	if (estadoJogo == MENU) // desenha a logo e define a cor do fundo do menu
 	{
 		ofBackground(light, light, light);
-		ofSetColor(255, 255, 255, opacity);
+		ofSetColor(255, 255, 255, opacity);// define a opacidade das imagens
 		logo.sprite.draw(logo.x, logo.y);
 		ofSetColor(255, 255, 255, 255);
 		bplay.sprite.draw(bplay.centrox, bplay.centroy);
@@ -62,11 +72,20 @@ void ofApp::draw() {
 			{
 				lado1.sprite.draw(0, 0);
 				bilhete.draw();
+				botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
+				if (leg.ativo)
+				{
+					leg.sprite.draw(leg.posx, leg.posy);
+					mudaLeg(leg.numLeg, leg.qualLeg);
+				}
+				
 			}
 			else
+			{
 				lado2.sprite.draw(0, 0);
-
-			botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
+				botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
+			}
+			//botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
 		}
 }
 
@@ -103,6 +122,25 @@ void ofApp::mousePressed(int x, int y, int button) {
 		// Se as coordenadas X e Y do mouse estiverem entre as descritas abaixo, click é alterado e troca a imagem entre lado 1 e 2.
 		if (x > 487 && x < 537 && y > 700 && y < 750 && button == 0)
 			click = !click;
+
+		bilhete.pressed(x, y);
+		if (bilhete.getDialog())
+		{
+			leg.ativo = true;
+			leg.qualLeg = 1;
+			leg.numLeg = 1;
+		}
+		else
+			leg.ativo = false;
+
+		//legendas provisorias
+		if (leg.ativo)
+		{
+			if (x >= 0 && x <= ofGetWindowWidth() && y <= 768 && y >= 658)
+			{
+				leg.numLeg++;
+			}
+		}
 	}
 }
 
