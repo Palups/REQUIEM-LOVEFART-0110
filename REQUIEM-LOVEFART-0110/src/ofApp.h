@@ -38,11 +38,13 @@ public:
 	image botao;  // Variável para a imagem do botão que troca as imagens dos lados.
 	image logo;   //variavel para a logo
 	image bplay; // variavel para o botão de inicio
+	//image porta; //variavel para a imagem da porta
 	int light; //variavel para cor do background
 	int opacity;
 
+
 	intObject bilhete;
-	intObject cama;
+	intObject porta;
 
 	//legendas provisorias
 	struct legendas
@@ -71,7 +73,7 @@ public:
 				ofDrawBitmapString("Abigail: Nossa como a Mylla manja!!!", leg.posx + 10, leg.posy + 10);
 				break;
 			case 3:
-				ofDrawBitmapString("Abigail: Nossa como o Palu ta cagando!!!", leg.posx + 10, leg.posy + 10);
+				ofDrawBitmapString("Abigail: Nossa como o Palu ta bonito!!!", leg.posx + 10, leg.posy + 10);
 				break;
 			default:
 				leg.ativo = false;
@@ -94,21 +96,9 @@ public:
 			default:
 				leg.ativo = false;
 				leg.numLeg = 1;
-				leg.qualLeg = 0;
 				break;
 			}
 			break;
-		case 3:
-			switch (x)
-			{
-			case 1:
-				ofDrawBitmapString("Essa cama parece confortavel", leg.posx + 10, leg.posy + 10);
-				break;
-			default:
-				leg.ativo = false;
-				leg.numLeg = 1;
-				break;
-			}
 		default:
 
 			break;

@@ -5,14 +5,11 @@ bool click = false;  // Booleana para avaliar condição no sistema de troca da im
 
 					 //--------------------------------------------------------------
 void ofApp::setup() {
-	//Declaração das imagens
 	lado1.sprite.loadImage("images/lado1.png");  // Inicializando imagem do lado 1.
 	lado2.sprite.loadImage("images/lado2.png");  // Inicializando imagem do lado 2.
 	botao.sprite.loadImage("images/botao.png");  // Inicializando imagem para o botão que troca as imagens dos lados.
 	logo.sprite.loadImage("images/logo.png"); //logo do menu
 	bplay.sprite.loadImage("images/bplay.png"); // botão play
-
-	//definições iniciais
 	logo.tamX = 924; //largura da logo 
 	logo.tamY = 428; // altura da logo
 	bplay.tamX = 192; // largura botão
@@ -27,8 +24,8 @@ void ofApp::setup() {
 	opacity = 0;
 	bilhete.setPosition(200, 300);
 	bilhete.setSize(20, 20);
-	cama.setPosition(750, 400);
-	cama.setSize(200, 80);
+	porta.setPosition(750, 400);
+	porta.setSize(83, 250);
 
 	//legendas provisorias
 	leg.posx = 0;
@@ -78,7 +75,6 @@ void ofApp::draw() {
 				lado1.sprite.draw(0, 0);
 				bilhete.draw();
 				botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
-				cama.draw();
 				if (leg.ativo)
 				{
 					leg.sprite.draw(leg.posx, leg.posy);
@@ -90,6 +86,8 @@ void ofApp::draw() {
 			{
 				lado2.sprite.draw(0, 0);
 				botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
+				porta.draw();
+
 			}
 			//botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
 		}
@@ -139,16 +137,6 @@ void ofApp::mousePressed(int x, int y, int button) {
 		else
 			leg.ativo = false;
 
-		cama.pressed(x, y);
-		if (cama.getDialog())
-		{
-			leg.ativo = true;
-			leg.qualLeg = 3;
-			leg.numLeg = 1;
-		}
-		else
-			leg.ativo = false;
-
 		//legendas provisorias
 		if (leg.ativo)
 		{
@@ -156,6 +144,18 @@ void ofApp::mousePressed(int x, int y, int button) {
 			{
 				leg.numLeg++;
 			}
+		}
+
+		if (!click) {     //se for o lado 2, aí então se o x e y do mouse estiverem entre o tamanho da porta, fazer tal coisa.
+			porta.pressed(x, y);
+			if (porta.getDialog())
+			{
+				leg.ativo = true;
+				leg.qualLeg = 2;
+				leg.numLeg = 1;
+			}
+			else
+				leg.ativo = false;
 		}
 	}
 }
