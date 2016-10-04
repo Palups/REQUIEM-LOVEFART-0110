@@ -42,6 +42,7 @@ public:
 	int opacity;
 
 	intObject bilhete;
+	intObject cama;
 
 	//legendas provisorias
 	struct legendas
@@ -93,9 +94,21 @@ public:
 			default:
 				leg.ativo = false;
 				leg.numLeg = 1;
+				leg.qualLeg = 0;
 				break;
 			}
 			break;
+		case 3:
+			switch (x)
+			{
+			case 1:
+				ofDrawBitmapString("Essa cama parece confortavel", leg.posx + 10, leg.posy + 10);
+				break;
+			default:
+				leg.ativo = false;
+				leg.numLeg = 1;
+				break;
+			}
 		default:
 
 			break;
