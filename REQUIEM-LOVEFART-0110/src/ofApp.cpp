@@ -24,6 +24,8 @@ void ofApp::setup() {
 	opacity = 0;
 	bilhete.setPosition(200, 300);
 	bilhete.setSize(20, 20);
+	porta.setPosition(750, 400);
+	porta.setSize(83, 250);
 
 	//legendas provisorias
 	leg.posx = 0;
@@ -84,6 +86,8 @@ void ofApp::draw() {
 			{
 				lado2.sprite.draw(0, 0);
 				botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
+				porta.draw();
+
 			}
 			//botao.sprite.draw(487, 700);  // Desenha o botão que troca as imagens dos lados.
 		}
@@ -140,6 +144,18 @@ void ofApp::mousePressed(int x, int y, int button) {
 			{
 				leg.numLeg++;
 			}
+		}
+
+		if (!click) {     //se for o lado 2, aí então se o x e y do mouse estiverem entre o tamanho da porta, fazer tal coisa.
+			porta.pressed(x, y);
+			if (porta.getDialog())
+			{
+				leg.ativo = true;
+				leg.qualLeg = 2;
+				leg.numLeg = 1;
+			}
+			else
+				leg.ativo = false;
 		}
 	}
 }
