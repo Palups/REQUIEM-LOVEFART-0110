@@ -2,6 +2,12 @@
 
 #include "ofMain.h"
 #include "intObject.h"
+#include "Button.h"
+
+#define GAME_MENU 0 
+#define GAME_PLAY_SIDE_A 1
+#define GAME_PLAY_SIDE_B 2
+#define GAME_OVER 3
 
 class ofApp : public ofBaseApp {
 
@@ -22,25 +28,23 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	//variaveis que controlam o estado do jogo
-	const int MENU = 0;
-	const int GAMEPLAY = 1;
-	const int GAMEOVER = 2;
-	int estadoJogo = MENU; //seta o estado inicial pra MENU
-	struct image //struct para as imagens
-	{
-		int centrox, centroy, x, y; //posições
-		ofImage sprite; //variavel para carregar as imagens
-		int tamX, tamY; //tamanho das imagens(pra pode posicionar de acordo na tela)
-	};
-	image lado1;  // Variável para a imagem do lado 1.
-	image lado2;  // Variável para a imagem do lado 2.
-	image botao;  // Variável para a imagem do botão que troca as imagens dos lados.
-	image logo;   //variavel para a logo
-	image bplay; // variavel para o botão de inicio
-	//image porta; //variavel para a imagem da porta
-	int light; //variavel para cor do background
-	int opacity;
+	/*--------------------------------------------------------*/
+	int game_state = GAME_MENU;  //controlar estado do jogo
+	/*--------------------------------------------------------*/
+
+	/*-------------------------------*/
+	//variáveis para imagens normais
+	ofImage menuBackground;
+	ofImage menuLogo;
+	ofImage wall1;
+	ofImage wall2;
+	/*-------------------------------*/
+
+	/*-------------------------------*/
+	//declaração dos ponteiros de botão
+	Button *btnPlay;
+	Button *btnChangeWall;
+	/*-------------------------------*/
 
 
 	intObject bilhete;
