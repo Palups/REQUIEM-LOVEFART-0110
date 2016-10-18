@@ -47,8 +47,9 @@ public:
 	/*-------------------------------*/
 
 
-	intObject bilhete;
-	intObject porta;
+	intObject *bed;
+	intObject * door;
+	
 
 	//legendas provisorias
 	struct legendas
@@ -71,10 +72,10 @@ public:
 			switch (x)
 			{
 			case 1:
-				ofDrawBitmapString("Abigail: Nossa como o Maycow manja!!!", leg.posx + 10, leg.posy + 10);
+				ofDrawBitmapString("Abigail: Essa cama me parece confortavel", leg.posx + 10, leg.posy + 10);
 				break;
 			case 2:
-				ofDrawBitmapString("Abigail: Nossa como a Mylla manja!!!", leg.posx + 10, leg.posy + 10);
+				ofDrawBitmapString("Abigail: Pena que nao esta liberada para dormir, pq nao fiz o que precisa no jogo hehe", leg.posx + 10, leg.posy + 10);
 				break;
 			case 3:
 				ofDrawBitmapString("Abigail: Nossa como o Palu ta bonito!!!", leg.posx + 10, leg.posy + 10);

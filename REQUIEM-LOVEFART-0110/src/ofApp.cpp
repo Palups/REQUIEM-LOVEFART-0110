@@ -1,6 +1,7 @@
 #include "ofApp.h"
 #include "intObject.h"
 #include "Button.h"
+#include <iostream>
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -16,11 +17,11 @@ void ofApp::setup() {
 	//botão de trocar de tela
 	btnChangeWall = new Button(487, 650, 50, 50, "images/btnChangeWall.png");
 	/*----------------------------------------------------------------------------*/
-
-	bilhete.setPosition(200, 300);
-	bilhete.setSize(20, 20);
-	porta.setPosition(750, 400);
-	porta.setSize(83, 250);
+	
+	bed = new intObject(850, 500);
+	bed->setSize(150, 180);
+	door = new intObject(750, 300);
+	door->setSize(80, 180);
 
 	//legendas provisorias
 	leg.posx = 0;
@@ -59,7 +60,7 @@ void ofApp::draw() {
 		wall1.draw(0, 0);
 		btnChangeWall->Desenhar();
 
-		bilhete.draw();
+		bed->draw();
 
 		if (leg.ativo)
 		{
@@ -71,8 +72,9 @@ void ofApp::draw() {
 	case GAME_PLAY_SIDE_B:
 		wall2.draw(0, 0);
 		btnChangeWall->Desenhar();
+		door->draw();
 
-		porta.draw();
+		
 		break;
 
 	case GAME_OVER:
@@ -112,12 +114,12 @@ void ofApp::mousePressed(int x, int y, int button) {
 		if (x > 487 && x < 537 && y > 650 && y < 700)
 			game_state = GAME_PLAY_SIDE_B;
 
-		bilhete.pressed(x, y);
-		if (bilhete.getDialog())
+		bed->pressed(x, y);
+		if (bed->getDialog())
 		{
 			leg.ativo = true;
 			leg.qualLeg = 1;
-			leg.numLeg = 1;
+			//leg.numLeg = 1;
 		}
 		else
 			leg.ativo = false;
@@ -136,15 +138,24 @@ void ofApp::mousePressed(int x, int y, int button) {
 		if (x > 487 && x < 537 && y > 650 && y < 700)
 			game_state = GAME_PLAY_SIDE_A;
 
-		porta.pressed(x, y);
-		if (porta.getDialog())
+		door->pressed(x, y);
+		if (door->getDialog())
 		{
 			leg.ativo = true;
 			leg.qualLeg = 2;
-			leg.numLeg = 1;
+			//leg.numLeg = 1;
 		}
 		else
 			leg.ativo = false;
+
+		if (leg.ativo)
+		{
+			if (x >= 0 && x <= ofGetWindowWidth() && y <= 768 && y >= 658)
+			{
+				leg.numLeg++;
+			}
+		}
+
 		break;
 
 	case GAME_OVER:

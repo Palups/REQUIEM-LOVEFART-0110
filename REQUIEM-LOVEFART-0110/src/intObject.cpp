@@ -13,6 +13,14 @@ intObject::intObject()
 	display_dialog = false;
 }
 
+intObject::intObject(int x, int y)
+{
+	object_x = x;
+	object_y = y;
+	object_state = STATE_NORMAL;
+	display_dialog = false;
+}
+
 /*Altera a posicao do objeto*/
 void intObject::setPosition(int x, int y)
 {
@@ -51,7 +59,7 @@ void intObject::released(int x, int y)
 
 }
 
-void intObject::draw()
+void intObject::drawZoom()
 {
 	if (object_state == STATE_NORMAL)
 		ofDrawRectangle(object_x, object_y, object_w, object_h);
@@ -59,6 +67,10 @@ void intObject::draw()
 		ofDrawRectangle(object_x, object_y, object_w + 100, object_h + 100);
 }
 
+void intObject::draw()
+{
+	ofDrawRectangle(object_x, object_y, object_w, object_h);
+}
 void intObject::update()
 {
 

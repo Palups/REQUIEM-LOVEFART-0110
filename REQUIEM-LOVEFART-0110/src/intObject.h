@@ -13,6 +13,9 @@ public:
 
 	//Construtor
 	intObject();
+	
+	//construtor já definindo a posição
+	intObject(int x, int y);
 
 	//Funcao para checar se foi pressionado o objeto
 	void intObject::pressed(int x, int y);
@@ -27,6 +30,9 @@ public:
 	void released(int x, int y);
 
 	//Funcao que vai ser colocada no draw do ofApp
+	void drawZoom();
+
+	//desenha sem a opção de zoom ao clicar
 	void draw();
 
 	//Funcao que vai ser colocada no update do ofApp
