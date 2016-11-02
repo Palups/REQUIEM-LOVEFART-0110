@@ -48,7 +48,11 @@ public:
 
 
 	intObject *bed;
-	intObject * door;
+	intObject *door;
+	intObject *duct;
+	intObject *note;
+	intObject *calendar;
+	intObject *toilet;
 	
 
 	//legendas provisorias

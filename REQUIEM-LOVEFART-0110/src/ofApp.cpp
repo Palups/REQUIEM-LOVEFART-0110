@@ -18,10 +18,18 @@ void ofApp::setup() {
 	btnChangeWall = new Button(487, 650, 50, 50, "images/btnChangeWall.png");
 	/*----------------------------------------------------------------------------*/
 	
-	bed = new intObject(850, 500);
-	bed->setSize(150, 180);
-	door = new intObject(750, 300);
-	door->setSize(80, 180);
+	bed = new intObject(75, 550);
+	bed->setSize(465, 100);
+	door = new intObject(710, 292);
+	door->setSize(213, 385);
+	duct = new intObject(196, 144);
+	duct->setSize(202, 111);
+	toilet = new intObject(580, 546);
+	toilet->setSize(135, 145);
+	note = new intObject(187, 331);
+	note->setSize(49, 57);
+	calendar = new intObject(726, 152);
+	calendar->setSize(125, 220);
 
 	//legendas provisorias
 	leg.posx = 0;
@@ -57,10 +65,14 @@ void ofApp::draw() {
 		break;
 
 	case GAME_PLAY_SIDE_A:
-		wall1.draw(0, 0);
-		btnChangeWall->Desenhar();
-
+		wall1.draw(0, 0);		
+		//ofSetColor(255, 255, 255, 0); // descomente isso para deixar invisivel
 		bed->draw();
+		door->draw();
+		duct->draw();
+		ofSetColor(255, 255, 255, 255);
+		btnChangeWall->Desenhar();
+		
 
 		if (leg.ativo)
 		{
@@ -71,10 +83,13 @@ void ofApp::draw() {
 
 	case GAME_PLAY_SIDE_B:
 		wall2.draw(0, 0);
+		//ofSetColor(255, 255, 255, 0); //descomente para deixar invisivel
+		toilet->draw();
+		calendar->draw();
+		note->draw();
+		ofSetColor(255, 255, 255, 255);
 		btnChangeWall->Desenhar();
-		door->draw();
 
-		
 		break;
 
 	case GAME_OVER:
@@ -94,7 +109,7 @@ void ofApp::keyReleased(int key) {
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y) {
-
+	std::cout << "posicao " << x << " " << y << std::endl;
 }
 
 //--------------------------------------------------------------
