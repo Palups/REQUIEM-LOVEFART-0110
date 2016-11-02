@@ -7,8 +7,8 @@
 void ofApp::setup() {
 	menuBackground.load("images/menuBackground.png");
 	menuLogo.load("images/menuLogo.png");
-	wall1.load("images/wall1.jpg");
-	wall2.load("images/wall2.jpg");
+	wall1.load("images/wall1.png");
+	wall2.load("images/wall2.png");
 
 	/*----------------------------------------------------------------------------*/
 	//botão play do menu
