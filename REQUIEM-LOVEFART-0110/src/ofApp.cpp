@@ -2,6 +2,7 @@
 #include "intObject.h"
 #include "Button.h"
 #include <iostream>
+#include <vector>
 
 //--------------------------------------------------------------
 void ofApp::setup() {
@@ -31,11 +32,16 @@ void ofApp::setup() {
 	calendar = new intObject(726, 152);
 	calendar->setSize(125, 220);
 
-	//legendas provisorias
+	bed->pushDialog("hello");
+	bed->pushDialog("World");
+	toilet->pushDialog("shit");
+	toilet->pushDialog("poop");
+
+	/*legendas provisorias
 	leg.posx = 0;
 	leg.posy = 658;
 	leg.sprite.loadImage("images/barraleg.png");
-	leg.numLeg = 1;
+	leg.numLeg = 1;*/
 }
 
 //--------------------------------------------------------------
@@ -73,12 +79,12 @@ void ofApp::draw() {
 		ofSetColor(255, 255, 255, 255);
 		btnChangeWall->Desenhar();
 		
-
+		/*
 		if (leg.ativo)
 		{
 			leg.sprite.draw(leg.posx, leg.posy);
 			mudaLeg(leg.numLeg, leg.qualLeg);
-		}
+		}*/
 		break;
 
 	case GAME_PLAY_SIDE_B:
@@ -130,6 +136,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 			game_state = GAME_PLAY_SIDE_B;
 
 		bed->pressed(x, y);
+		/*
 		if (bed->getDialog())
 		{
 			leg.ativo = true;
@@ -146,7 +153,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 			{
 				leg.numLeg++;
 			}
-		}
+		}*/
 		break;
 
 	case GAME_PLAY_SIDE_B:
@@ -154,6 +161,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 			game_state = GAME_PLAY_SIDE_A;
 
 		door->pressed(x, y);
+		/*
 		if (door->getDialog())
 		{
 			leg.ativo = true;
@@ -170,7 +178,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 				leg.numLeg++;
 			}
 		}
-
+		*/
 		break;
 
 	case GAME_OVER:

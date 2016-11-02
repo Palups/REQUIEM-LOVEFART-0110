@@ -10,15 +10,25 @@ intObject::intObject()
 	object_w = 0;
 	object_h = 0;
 	object_state = STATE_NORMAL;
-	display_dialog = false;
+
+
+	/*Inicialização dos dialogos*/
+	dialogFlag = false;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	index = 0;
 }
 
-intObject::intObject(int x, int y)
+intObject::intObject(int object_x, int object_y)
 {
-	object_x = x;
-	object_y = y;
+	this->object_x = object_x;
+	this->object_y = object_y;
+
 	object_state = STATE_NORMAL;
-	display_dialog = false;
+
+	/*Inicialização dos dialogos*/
+	dialogFlag = false;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	index = 0;
 }
 
 /*Altera a posicao do objeto*/
@@ -38,25 +48,21 @@ void intObject::setSize(int w, int h)
 /*Vai testar se o objeto foi pressionado*/
 void intObject::pressed(int x, int y)
 {
+	//objeto foi clicado
 	if (x >= object_x && x <= (object_x + object_w) && y >= object_y && y <= (object_y + object_h))
 	{
-		if (object_state == STATE_NORMAL)
+		if (object_state == STATE_NORMAL) //objeto nao estava ativo
 		{
 			object_state = STATE_PRESSED;
-			display_dialog = true;
+			dialogFlag = true;
 		}
-		else
+		else //objeto estava ativo
 		{
 			object_state = STATE_NORMAL;
-			display_dialog = false;
+			dialogFlag = false;
+			addIndex();
 		}
 	}
-}
-
-/*Testa se o objeto/botao foi solto*/
-void intObject::released(int x, int y)
-{
-
 }
 
 void intObject::drawZoom()
@@ -69,13 +75,19 @@ void intObject::drawZoom()
 
 void intObject::draw()
 {
+	/*Desenha o objeto*/
+	ofSetColor(255,255,255);
 	ofDrawRectangle(object_x, object_y, object_w, object_h);
-}
-void intObject::update()
-{
 
+	/*Condiçoes de dialogo*/
+	if (object_state == STATE_PRESSED && dialogFlag == true)
+	{
+		drawDBox();
+		displayDialog();
+	}
 }
 
+/*---getters---*/
 int intObject::getX()
 {
 	return object_x;
@@ -84,7 +96,40 @@ int intObject::getY()
 {
 	return object_y;
 }
-bool intObject::getDialog()
+
+/*-----------------------------------------*/
+/*Dialogo*/
+
+/*Desenha o HUD*/
+void intObject::drawDBox()
 {
-	return display_dialog;
+	//Cor e desenho da caixa de dialogo
+	ofSetColor(0, 0, 0);
+	ofDrawRectRounded(10, 600, 1000, 70, 5);
+}
+
+/*Vai dar display do text. i é o indice da lista de dialogos e list eh o vetor de dialogos*/
+void intObject::displayDialog()
+{
+	//Cor e desenho do texto
+	ofSetColor(255, 255, 255);
+	myfont.drawString(dialogueList[index], 200, 640);
+}
+
+void intObject::pushDialog(std::string s)
+{
+	dialogueList.push_back(s);
+}
+
+void intObject::addIndex()
+{
+	if (index < (dialogueList.size() - 1))
+		index++;
+	else
+		return;
+}
+
+int intObject::getIndex()
+{
+	return index;
 }

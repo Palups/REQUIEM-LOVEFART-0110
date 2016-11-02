@@ -1,4 +1,6 @@
 #pragma once
+#include <string>
+#include <vector>
 #include "ofMain.h"
 
 class intObject
@@ -11,23 +13,16 @@ public:
 		STATE_NORMAL
 	};
 
-	//Construtor
-	intObject();
-	
-	//construtor já definindo a posição
-	intObject(int x, int y);
+	//Construtores
+	intObject();	
+	intObject(int object_x, int object_y);
 
 	//Funcao para checar se foi pressionado o objeto
-	void intObject::pressed(int x, int y);
+	void pressed(int x, int y);
 
-	//Funcao para alterar a posicao do objeto
+	/*Setters*/
 	void setPosition(int x, int y);
-
-	// Funcao para alterar o tamanho
 	void setSize(int w, int h);
-
-	//Testa se o objeto/botao foi solto
-	void released(int x, int y);
 
 	//Funcao que vai ser colocada no draw do ofApp
 	void drawZoom();
@@ -35,24 +30,37 @@ public:
 	//desenha sem a opção de zoom ao clicar
 	void draw();
 
-	//Funcao que vai ser colocada no update do ofApp
-	void update();
-
 	//Funcao que pega a posição X do objeto
 	int getX();
 
 	//Funcao que pega a posição Y do objeto
 	int getY();
 
-	//pega o display_dialog da função pressed
-	bool getDialog();
+	/*-----Dialogo-----*/
+
+	//Funcao que vai dar o display da caixa de dialogo
+	void displayDialog();
+
+	//Adiciona strings no vetor
+	void pushDialog(std::string s);
+
+	//Desenha o HUD
+	void drawDBox();
+
+	//Index
+	int getIndex();
+	void addIndex();
 
 private:
 
 	int object_x, object_y; //Coordenadas do objeto	
 	int object_w, object_h; //Largura (width) e altura (height) do objeto
+	int index; //Indice para navegar nos dialogos
+	bool dialogFlag; //Boolean que indica se a caixa de dialogo está aberta
 
+	ofTrueTypeFont myfont; //Fonte
 	OBJECT_STATE object_state; //Um boolean para o estado do objeto
-	bool display_dialog;
+
+	std::vector <std::string> dialogueList; //lista de dialogos
 };
 
