@@ -115,7 +115,7 @@ void ofApp::keyReleased(int key) {
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y) {
-	std::cout << "posicao " << x << " " << y << std::endl;
+	//std::cout << "posicao " << x << " " << y << std::endl;
 }
 
 //--------------------------------------------------------------
@@ -160,7 +160,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 		if (x > 487 && x < 537 && y > 650 && y < 700)
 			game_state = GAME_PLAY_SIDE_A;
 
-		door->pressed(x, y);
+		toilet->pressed(x, y);
 		/*
 		if (door->getDialog())
 		{

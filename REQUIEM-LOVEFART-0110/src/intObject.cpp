@@ -83,8 +83,7 @@ void intObject::draw()
 	if (object_state == STATE_PRESSED && dialogFlag == true)
 	{
 		drawDBox();
-		displayDialog();
-	}
+		displayDialog();	}
 }
 
 /*---getters---*/
@@ -105,7 +104,8 @@ void intObject::drawDBox()
 {
 	//Cor e desenho da caixa de dialogo
 	ofSetColor(0, 0, 0);
-	ofDrawRectRounded(10, 600, 1000, 70, 5);
+	ofDrawRectRounded(7, 634, 1010, 100, 5);
+	
 }
 
 /*Vai dar display do text. i é o indice da lista de dialogos e list eh o vetor de dialogos*/
@@ -113,7 +113,7 @@ void intObject::displayDialog()
 {
 	//Cor e desenho do texto
 	ofSetColor(255, 255, 255);
-	myfont.drawString(dialogueList[index], 200, 640);
+	myfont.drawString(dialogueList[index], 100, 674);
 }
 
 void intObject::pushDialog(std::string s)
