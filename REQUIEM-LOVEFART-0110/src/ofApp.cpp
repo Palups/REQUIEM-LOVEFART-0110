@@ -34,9 +34,9 @@ void ofApp::setup() {
 
 	/*---------------Adiçao de legendas---------------*/
 	door->pushDialog("Tem alguem ai?!");
-	note->pushDialog("Bom dia Sra. Abigail Page\n É uma alegria receber a senhora.\n Espero que sinta-se confortavel!");
+	note->pushDialog("Bom dia Sra. Abigail Page! Eh uma alegria receber a senhora.\n Espero que sinta-se confortavel!");
 	bed->pushDialog("Não estou me sentindo bem. Acho melhor me deitar..");
-
+	toilet->pushDialog("Que coisa nojenta!");
 
 	/*legendas provisorias
 	leg.posx = 0;
@@ -72,13 +72,13 @@ void ofApp::draw() {
 		break;
 
 	case GAME_PLAY_SIDE_A:
-		wall1.draw(0, 0);		
-		//ofSetColor(255, 255, 255, 0); // descomente isso para deixar invisivel
 		ofSetColor(255, 255, 255, 255);
-		btnChangeWall->Desenhar();
-		bed->draw();
-		door->draw();
-		duct->draw();
+		wall1.draw(0, 0);			
+		btnChangeWall->Desenhar();		
+		bed->draw(0);
+		door->draw(0);
+		duct->draw(0);
+		
 		/*
 		if (leg.ativo)
 		{
@@ -88,13 +88,14 @@ void ofApp::draw() {
 		break;
 
 	case GAME_PLAY_SIDE_B:
-		wall2.draw(0, 0);
-		//ofSetColor(255, 255, 255, 0); //descomente para deixar invisivel
-		toilet->draw();
-		calendar->draw();
-		note->draw();
 		ofSetColor(255, 255, 255, 255);
-		btnChangeWall->Desenhar();
+		wall2.draw(0, 0);		
+		btnChangeWall->Desenhar();		
+		toilet->draw(0);
+		calendar->draw(0);
+		note->draw(0);
+		
+		
 
 		break;
 
@@ -136,6 +137,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 			game_state = GAME_PLAY_SIDE_B;
 
 		bed->pressed(x, y);
+		door->pressed(x, y);
 		/*
 		if (bed->getDialog())
 		{
@@ -161,6 +163,7 @@ void ofApp::mousePressed(int x, int y, int button) {
 			game_state = GAME_PLAY_SIDE_A;
 
 		toilet->pressed(x, y);
+		note->pressed(x, y);
 		/*
 		if (door->getDialog())
 		{

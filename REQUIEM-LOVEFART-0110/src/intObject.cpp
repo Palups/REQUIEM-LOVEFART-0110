@@ -73,10 +73,10 @@ void intObject::drawZoom()
 		ofDrawRectangle(object_x, object_y, object_w + 100, object_h + 100);
 }
 
-void intObject::draw()
+void intObject::draw(int opacity)
 {
 	/*Desenha o objeto*/
-	ofSetColor(255,255,255);
+	ofSetColor(255,255,255,opacity); //255 para aparecer, 0 para n aparecer
 	ofDrawRectangle(object_x, object_y, object_w, object_h);
 
 	/*Condiçoes de dialogo*/
@@ -104,7 +104,7 @@ void intObject::drawDBox()
 {
 	//Cor e desenho da caixa de dialogo
 	ofSetColor(0, 0, 0);
-	ofDrawRectRounded(7, 634, 1010, 100, 5);
+	ofDrawRectRounded(7, 635, 1010, 100, 5);
 	
 }
 

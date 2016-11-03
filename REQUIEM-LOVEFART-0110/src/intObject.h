@@ -28,7 +28,7 @@ public:
 	void drawZoom();
 
 	//desenha sem a opção de zoom ao clicar
-	void draw();
+	void draw(int opacity);
 
 	//Funcao que pega a posição X do objeto
 	int getX();
