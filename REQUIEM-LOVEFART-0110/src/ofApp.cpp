@@ -32,10 +32,11 @@ void ofApp::setup() {
 	calendar = new intObject(726, 152);
 	calendar->setSize(125, 220);
 
-	bed->pushDialog("hello");
-	bed->pushDialog("World");
-	toilet->pushDialog("shit");
-	toilet->pushDialog("poop");
+	/*---------------Adiçao de legendas---------------*/
+	door->pushDialog("Tem alguem ai?!");
+	note->pushDialog("Bom dia Sra. Abigail Page\n É uma alegria receber a senhora.\n Espero que sinta-se confortavel!");
+	bed->pushDialog("Não estou me sentindo bem. Acho melhor me deitar..");
+
 
 	/*legendas provisorias
 	leg.posx = 0;
@@ -73,12 +74,11 @@ void ofApp::draw() {
 	case GAME_PLAY_SIDE_A:
 		wall1.draw(0, 0);		
 		//ofSetColor(255, 255, 255, 0); // descomente isso para deixar invisivel
+		ofSetColor(255, 255, 255, 255);
+		btnChangeWall->Desenhar();
 		bed->draw();
 		door->draw();
 		duct->draw();
-		ofSetColor(255, 255, 255, 255);
-		btnChangeWall->Desenhar();
-		
 		/*
 		if (leg.ativo)
 		{
