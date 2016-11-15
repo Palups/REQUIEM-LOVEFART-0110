@@ -5,7 +5,7 @@ void ofApp::setup() {
 	//ofSetBackgroundColor(0, 0, 0);
 	//ofHideCursor();
 
-	gameManager = new GameManager(GAME_PLAY); // Tudo comecara no menu
+	gameManager = new GameManager(GAME_MENU); // Tudo comecara no menu
 
 	gameMenu = new GameMenu();
 	gamePlay = new GamePlay(gameManager);

@@ -10,6 +10,8 @@ public:
 	int m_width; // largura
 	int m_height; // altura
 
+	ofImage m_image;
+
 	bool m_estado = true; // Interruptor, LIGADO(ON) ou DESLIGADO(OFF)
 	bool m_online = true; // Valido para as cameras, se tiver online funciona
 	bool m_drawIt; // Se vai desenhar o botao ou apenas detectar toque
@@ -21,8 +23,8 @@ public:
 
 	bool mouseOver(); // ver se o mouse esta em cima dele
 
-	Button::Button(int x, int y, int w, int h, bool desenheEle);
-	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path);
 
 
 };

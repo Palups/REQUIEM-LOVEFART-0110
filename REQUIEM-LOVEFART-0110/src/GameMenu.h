@@ -8,7 +8,6 @@ class GameMenu
 public:
 	Button *btnPlay;
 	Button *btnExit;
-	Button *btnCredits;
 
 	ofImage m_bg;
 

@@ -9,6 +9,7 @@ void Button::draw()
 		{
 			ofSetColor(255);
 			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
+			m_image.draw(m_x, m_y);
 		}
 		else
 		{
@@ -34,15 +35,16 @@ bool Button::mouseOver()
 		return false;
 }
 
-Button::Button(int x, int y, int w, int h, bool desenheEle)
+Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path)
 {
 	m_x = x;
 	m_y = y;
 	m_width = w;
 	m_height = h;
 	m_drawIt = desenheEle;
+	m_image.loadImage(path);
 }
-Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path)
 {
 	m_x = x;
 	m_y = y;
@@ -50,6 +52,7 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
 	m_height = h;
 	m_drawIt = desenheEle;
 	m_estado = estado;
+	m_image.loadImage(path);
 }
 
 int Button::getW()
