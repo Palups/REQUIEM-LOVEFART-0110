@@ -3,7 +3,7 @@
 
 void Button::draw()
 {
-	if (m_drawIt)
+	/*if (m_drawIt)
 	{
 		if (m_estado == ON)
 		{
@@ -18,9 +18,9 @@ void Button::draw()
 			ofDrawRectangle(m_x - (getW() / 2)+1, m_y - (getH() / 2)+1, getW()-2, getH()-2);
 			ofSetColor(255);
 		}
-	}
+	}*/
 
-	//m_image.draw(m_x, m_y); será usado pro botão com imagem (quando funcionar)
+	m_image.draw(m_x, m_y);
 }
 
 bool Button::mouseOver()
