@@ -1,17 +1,28 @@
 #pragma once
 #include "ofMain.h"
+#include "GameManager.h"
 
 class Button
 {
-private:
-	float m_posX;
-	float m_posY;
-	float m_height;
-	float m_width;
-	ofImage m_image;
 public:
-	Button(float posX, float posY, float height, float width, std::string path);
-	~Button();
-	void Desenhar();
-};
+	int m_x;
+	int m_y;
+	int m_width; // largura
+	int m_height; // altura
 
+	bool m_estado = true; // Interruptor, LIGADO(ON) ou DESLIGADO(OFF)
+	bool m_online = true; // Valido para as cameras, se tiver online funciona
+	bool m_drawIt; // Se vai desenhar o botao ou apenas detectar toque
+
+	int getW();  // retorna largura
+	int getH();  // retorn altura
+
+	void draw();
+
+	bool mouseOver(); // ver se o mouse esta em cima dele
+
+	Button::Button(int x, int y, int w, int h, bool desenheEle);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado);
+
+
+};

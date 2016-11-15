@@ -1,19 +1,63 @@
 #include "Button.h"
+#include "GameManager.h"
 
-Button::Button(float posX, float posY, float height, float width, std::string path)
+void Button::draw()
 {
-	m_posX = posX;
-	m_posY = posY;
-	m_height = height;
-	m_width = width;
-	m_image.loadImage(path);
+	if (m_drawIt)
+	{
+		if (m_estado == ON)
+		{
+			ofSetColor(255);
+			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
+		}
+		else
+		{
+			ofSetColor(255);
+			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
+			ofSetColor(0);
+			ofDrawRectangle(m_x - (getW() / 2)+1, m_y - (getH() / 2)+1, getW()-2, getH()-2);
+			ofSetColor(255);
+		}
+	}
 }
 
-Button::~Button()
+bool Button::mouseOver()
 {
+	if (
+		((ofGetMouseX() > m_x - (getW() / 2)) && (ofGetMouseX() < m_x + (getW() / 2))) &&
+		((ofGetMouseY() > m_y - (getH() / 2)) && (ofGetMouseY() < m_y + (getH() / 2)))
+		)
+	{
+		return true;
+	}
+	else
+		return false;
 }
 
-void Button::Desenhar() {
-	//ofDrawRectangle(m_posX, m_posY, m_height, m_width);
-	m_image.draw(m_posX, m_posY);
+Button::Button(int x, int y, int w, int h, bool desenheEle)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+}
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	m_estado = estado;
+}
+
+int Button::getW()
+{
+	return m_width;
+}
+
+int Button::getH()
+{
+	return m_height;
 }

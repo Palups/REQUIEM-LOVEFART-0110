@@ -1,105 +1,65 @@
 #include "ofApp.h"
-#include "intObject.h"
-#include "Button.h"
-#include <iostream>
-#include <vector>
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	menuBackground.load("images/menuBackground.png");
-	menuLogo.load("images/menuLogo.png");
-	wall1.load("images/wall1.png");
-	wall2.load("images/wall2.png");
+	//ofSetBackgroundColor(0, 0, 0);
+	//ofHideCursor();
 
-	/*----------------------------------------------------------------------------*/
-	//botão play do menu
-	btnPlay = new Button(487, 650, 50, 50, "images/menuBtnPlay.png");
+	gameManager = new GameManager(GAME_PLAY); // Tudo comecara no menu
 
-	//botão de trocar de tela
-	btnChangeWall = new Button(487, 650, 50, 50, "images/btnChangeWall.png");
-	/*----------------------------------------------------------------------------*/
-	
-	bed = new intObject(75, 550);
-	bed->setSize(465, 100);
-	door = new intObject(710, 292);
-	door->setSize(213, 385);
-	duct = new intObject(196, 144);
-	duct->setSize(202, 111);
-	toilet = new intObject(580, 546);
-	toilet->setSize(135, 145);
-	note = new intObject(187, 331);
-	note->setSize(49, 57);
-	calendar = new intObject(726, 152);
-	calendar->setSize(125, 220);
-
-	/*---------------Adiçao de legendas---------------*/
-	door->pushDialog("Tem alguem ai?!");
-	note->pushDialog("Bom dia Sra. Abigail Page! Eh uma alegria receber a senhora.\n Espero que sinta-se confortavel!");
-	bed->pushDialog("Não estou me sentindo bem. Acho melhor me deitar..");
-	toilet->pushDialog("Que coisa nojenta!");
-
-	/*legendas provisorias
-	leg.posx = 0;
-	leg.posy = 658;
-	leg.sprite.loadImage("images/barraleg.png");
-	leg.numLeg = 1;*/
+	gameMenu = new GameMenu();
+	gamePlay = new GamePlay(gameManager);
+	/*gameWin = new GameWin();
+	gameOver = new GameOver();*/
 }
 
 //--------------------------------------------------------------
 void ofApp::update() {
-	switch (game_state) {
+	switch (gameManager->gameState)
+	{
 	case GAME_MENU:
+		gameMenu->update(gameManager);
 		break;
-
-	case GAME_PLAY_SIDE_A:
+	case GAME_PLAY:
+		gamePlay->update(gameManager);
 		break;
-
-	case GAME_PLAY_SIDE_B:
+	case GAME_WIN:
+		//gameWin->update();
 		break;
-
 	case GAME_OVER:
+		//gameOver->update();
+		break;
+	case GAME_RESET:
+		gameMenu->reset();
+		gamePlay->reset(gameManager);
+		//gameOver->reset();
+		gameManager->gameState = GAME_MENU;
+		break;
+	default:
 		break;
 	}
+	// Se passou por todos os updates e ninguem usou o clique do mouse, anula o BOOL para simular um clique 
+	// ao inves de deixar ligado, pois seria um "SEGURANDO BOTAO DO MOUSE"
+	gameManager->mousePressed = false;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	switch (game_state) {
+	switch (gameManager->gameState)
+	{
 	case GAME_MENU:
-		menuBackground.draw(0, 0);
-		menuLogo.draw(262, 165);
-		btnPlay->Desenhar();
+		gameMenu->draw(gameManager);
 		break;
-
-	case GAME_PLAY_SIDE_A:
-		ofSetColor(255, 255, 255, 255);
-		wall1.draw(0, 0);			
-		btnChangeWall->Desenhar();		
-		bed->draw(0);
-		door->draw(0);
-		duct->draw(0);
-		
-		/*
-		if (leg.ativo)
-		{
-			leg.sprite.draw(leg.posx, leg.posy);
-			mudaLeg(leg.numLeg, leg.qualLeg);
-		}*/
+	case GAME_PLAY:
+		gamePlay->draw(gameManager);
 		break;
-
-	case GAME_PLAY_SIDE_B:
-		ofSetColor(255, 255, 255, 255);
-		wall2.draw(0, 0);		
-		btnChangeWall->Desenhar();		
-		toilet->draw(0);
-		calendar->draw(0);
-		note->draw(0);
-		
-		
-
+	case GAME_WIN:
+		//gameWin->draw();
 		break;
-
 	case GAME_OVER:
+		//gameOver->draw();
+		break;
+	default:
 		break;
 	}
 }
@@ -116,7 +76,7 @@ void ofApp::keyReleased(int key) {
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y) {
-	//std::cout << "posicao " << x << " " << y << std::endl;
+
 }
 
 //--------------------------------------------------------------
@@ -126,67 +86,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-	switch (game_state) {
-	case GAME_MENU:
-		if (x > 487 && x < 537 && y > 650 && y < 700)
-			game_state = GAME_PLAY_SIDE_A;
-		break;
-
-	case GAME_PLAY_SIDE_A:
-		if (x > 487 && x < 537 && y > 650 && y < 700)
-			game_state = GAME_PLAY_SIDE_B;
-
-		bed->pressed(x, y);
-		door->pressed(x, y);
-		/*
-		if (bed->getDialog())
-		{
-			leg.ativo = true;
-			leg.qualLeg = 1;
-			//leg.numLeg = 1;
-		}
-		else
-			leg.ativo = false;
-
-		//legendas provisorias
-		if (leg.ativo)
-		{
-			if (x >= 0 && x <= ofGetWindowWidth() && y <= 768 && y >= 658)
-			{
-				leg.numLeg++;
-			}
-		}*/
-		break;
-
-	case GAME_PLAY_SIDE_B:
-		if (x > 487 && x < 537 && y > 650 && y < 700)
-			game_state = GAME_PLAY_SIDE_A;
-
-		toilet->pressed(x, y);
-		note->pressed(x, y);
-		/*
-		if (door->getDialog())
-		{
-			leg.ativo = true;
-			leg.qualLeg = 2;
-			//leg.numLeg = 1;
-		}
-		else
-			leg.ativo = false;
-
-		if (leg.ativo)
-		{
-			if (x >= 0 && x <= ofGetWindowWidth() && y <= 768 && y >= 658)
-			{
-				leg.numLeg++;
-			}
-		}
-		*/
-		break;
-
-	case GAME_OVER:
-		break;
-	}
+	gameManager->mousePressed = true;
 }
 
 //--------------------------------------------------------------
