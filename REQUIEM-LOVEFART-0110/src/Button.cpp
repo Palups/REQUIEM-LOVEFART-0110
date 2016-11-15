@@ -9,7 +9,6 @@ void Button::draw()
 		{
 			ofSetColor(255);
 			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
-			m_image.draw(m_x, m_y);
 		}
 		else
 		{
@@ -20,6 +19,8 @@ void Button::draw()
 			ofSetColor(255);
 		}
 	}
+
+	//m_image.draw(m_x, m_y); será usado pro botão com imagem (quando funcionar)
 }
 
 bool Button::mouseOver()

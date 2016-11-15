@@ -15,7 +15,7 @@ GameMenu::~GameMenu()
 {
 }
 
-void GameMenu::update(GameManager * game)
+void GameMenu::update(GameManager *game)
 {
 	if (btnPlay->mouseOver())
 	{
