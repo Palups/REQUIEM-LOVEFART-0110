@@ -23,8 +23,8 @@ public:
 
 	bool mouseOver(); // ver se o mouse esta em cima dele
 
-	Button::Button(int x, int y, int w, int h, bool desenheEle);
-	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado);
+	Button::Button(int x, int y, int w, int h, bool desenheEle/*, std::string path*/);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado/*, std::string path*/);
 
 
 };
