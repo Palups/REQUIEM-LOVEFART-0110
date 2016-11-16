@@ -26,13 +26,13 @@ void GameMenu::update(GameManager *game)
 		}
 	}
 	
-	if (btnExit->mouseOver())
+	/*if (btnExit->mouseOver())
 	{
 		if (game->mousePressed)
 		{
 			std::exit(0);
 		}
-	}
+	}*/
 	
 }
 
@@ -40,16 +40,16 @@ void GameMenu::draw(GameManager * game)
 {
 	m_bg.draw(0, 0);
 	btnPlay->draw();
-	btnExit->draw();
+	//btnExit->draw();
 }
 
 void GameMenu::reset()
 {
 	//ofSoundStopAll(); 
 	/*---definir as posições---*/
-	btnPlay = new Button(1105, 405, 333, 50, false, "images/menuBtnPlay.png");
+	btnPlay = new Button(512, 700, 100, 50, true);
 	//btnCredits = new Button(1105, 480, 333, 50, false);
-	btnExit = new Button(1105, 560, 333, 50, false, "images/menuBtnExit.png");
+	//btnExit = new Button(1105, 560, 333, 50, false, "images/menuBtnExit.png");
 
 	//m_snd_menu.setLoop(true);
 	//m_snd_menu.play();
