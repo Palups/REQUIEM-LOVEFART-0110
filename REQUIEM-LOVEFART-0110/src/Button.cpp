@@ -20,7 +20,11 @@ void Button::draw()
 		}
 	}*/
 
+<<<<<<< HEAD
 	m_image.draw(m_x, m_y);
+=======
+	//m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
+>>>>>>> origin/master
 }
 
 bool Button::mouseOver()
@@ -36,16 +40,16 @@ bool Button::mouseOver()
 		return false;
 }
 
-Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path)
+Button::Button(int x, int y, int w, int h, bool desenheEle)
 {
 	m_x = x;
 	m_y = y;
 	m_width = w;
 	m_height = h;
 	m_drawIt = desenheEle;
-	m_image.loadImage(path);
+	//m_image.loadImage(path);
 }
-Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path)
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
 {
 	m_x = x;
 	m_y = y;
@@ -53,7 +57,7 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::st
 	m_height = h;
 	m_drawIt = desenheEle;
 	m_estado = estado;
-	m_image.loadImage(path);
+	//m_image.loadImage(path);
 }
 
 int Button::getW()
