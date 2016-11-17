@@ -37,6 +37,8 @@ void GamePlay::update(GameManager * game)
 				if (game->mousePressed)
 				{
 					door->m_estado = true;
+					door->displayDialogue();
+					game->dialogueActive = ON;
 				}
 			}
 			if (bed->mouseOver())
@@ -90,6 +92,13 @@ void GamePlay::update(GameManager * game)
 	default:
 		break;
 	}
+
+	/*-- Dialogo --*/
+	if (game->mousePressed)
+	{
+		if (game->dialogueActive == OFF) // Caixa de dialogo está ativa. Desativa ela quando clicar em qualquer lugar
+			game->dialogueActive = ON;
+	}
 }
 
 void GamePlay::draw(GameManager * game)
@@ -131,6 +140,8 @@ void GamePlay::draw(GameManager * game)
 	default:
 		break;
 	}
+
+
 }
 
 void GamePlay::reset(GameManager * game)
@@ -141,6 +152,9 @@ void GamePlay::reset(GameManager * game)
 	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
 	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
+
+	/*-- Dialogo --*/
+	door->pushDialogue("fuck");
 }
 
 

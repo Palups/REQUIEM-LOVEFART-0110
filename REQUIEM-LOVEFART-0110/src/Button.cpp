@@ -101,6 +101,7 @@ void Button::pushDialogue(std::string s)
 
 void Button::displayDialogue()
 {
+	drawHUD();
 	ofSetColor(255, 255, 255);
 	myfont.drawString(dialogueList[index], 100, 674);
 }
@@ -125,8 +126,9 @@ void Button::addIndex()
 		return;
 }
 
+/*
 void Button::disableDialogue()
 {
 	if (dialogFlag)
 		dialogFlag = false;
-}
+}*/

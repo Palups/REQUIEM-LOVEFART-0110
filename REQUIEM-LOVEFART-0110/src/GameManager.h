@@ -20,6 +20,7 @@ public:
 	int gameSide;
 	int m_day;
 	bool mousePressed;
+	bool dialogueActive;
 
 	ofImage m_mouse;
 
