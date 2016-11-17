@@ -136,11 +136,11 @@ void GamePlay::draw(GameManager * game)
 void GamePlay::reset(GameManager * game)
 {
 	//aloca e inicializa variaveis
-	bed = new Button(75, 550, 465, 100, true, OFF);
-	note = new Button(187, 331, 49, 57, true, OFF);
-	door = new Button(710, 292, 213, 385, true, OFF);
-	toilet = new Button(580, 546, 135, 145, true, OFF);
-	changeSide = new Button(750, 650, 50, 50, true, OFF);
+	bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
+	note = new Button(187 + (49 / 2), 331 + (57 / 2), 49, 57, true, OFF);
+	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
+	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
+	changeSide = new Button(750 + (50 / 2), 650 + (50 / 2), 50, 50, true, OFF);
 }
 
 
