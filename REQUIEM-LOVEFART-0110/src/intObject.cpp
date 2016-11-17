@@ -48,6 +48,7 @@ void intObject::setSize(int w, int h)
 /*Vai testar se o objeto foi pressionado*/
 void intObject::pressed(int x, int y)
 {
+	disableDialog();
 	//objeto foi clicado
 	if (x >= object_x && x <= (object_x + object_w) && y >= object_y && y <= (object_y + object_h))
 	{
@@ -63,6 +64,12 @@ void intObject::pressed(int x, int y)
 			addIndex();
 		}
 	}
+}
+
+void intObject::disableDialog()
+{
+	if (dialogFlag)
+		dialogFlag = false;
 }
 
 void intObject::drawZoom()
@@ -83,7 +90,8 @@ void intObject::draw(int opacity)
 	if (object_state == STATE_PRESSED && dialogFlag == true)
 	{
 		drawDBox();
-		displayDialog();	}
+		displayDialog();	
+	}
 }
 
 /*---getters---*/

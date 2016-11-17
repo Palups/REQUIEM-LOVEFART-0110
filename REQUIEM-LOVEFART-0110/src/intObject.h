@@ -51,6 +51,9 @@ public:
 	int getIndex();
 	void addIndex();
 
+	//Desativa o dialogo
+	void disableDialog();
+
 private:
 
 	int object_x, object_y; //Coordenadas do objeto	

@@ -23,6 +23,35 @@ void Button::draw()
 	//m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
 }
 
+/*-- Construtores --*/
+
+Button::Button(int x, int y, int w, int h, bool desenheEle/*, std::string path*/)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	index = 0;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	dialogFlag = false;
+	//m_image.loadImage(path);
+}
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado/*, std::string path*/)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	m_estado = estado;
+	index = 0;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	dialogFlag = false;
+	//m_image.loadImage(path);
+}
+/* --xxx-- */
+
 bool Button::mouseOver()
 {
 	if (
@@ -36,26 +65,7 @@ bool Button::mouseOver()
 		return false;
 }
 
-Button::Button(int x, int y, int w, int h, bool desenheEle/*, std::string path*/)
-{
-	m_x = x;
-	m_y = y;
-	m_width = w;
-	m_height = h;
-	m_drawIt = desenheEle;
-	//m_image.loadImage(path);
-}
-Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado/*, std::string path*/)
-{
-	m_x = x;
-	m_y = y;
-	m_width = w;
-	m_height = h;
-	m_drawIt = desenheEle;
-	m_estado = estado;
-	//m_image.loadImage(path);
-}
-
+/*-- Getters --*/
 int Button::getW()
 {
 	return m_width;
@@ -64,4 +74,42 @@ int Button::getW()
 int Button::getH()
 {
 	return m_height;
+}
+
+/*-- Dialogo --*/
+void Button::pushDialogue(std::string s)
+{
+	dialogueList.push_back(s);
+}
+
+void Button::displayDialogue()
+{
+	ofSetColor(255, 255, 255);
+	myfont.drawString(dialogueList[index], 100, 674);
+}
+
+void Button::drawHUD()
+{
+	//Cor e desenho da caixa de dialogo
+	ofSetColor(0, 0, 0);
+	ofDrawRectRounded(7, 635, 1010, 100, 5);
+}
+
+int Button::getIndex()
+{
+	return index;
+}
+
+void Button::addIndex()
+{
+	if (index < (dialogueList.size() - 1)) // Condição para que o index não saia do vetor e retorne lixo
+		index++;
+	else
+		return;
+}
+
+void Button::disableDialogue()
+{
+	if (dialogFlag)
+		dialogFlag = false;
 }
