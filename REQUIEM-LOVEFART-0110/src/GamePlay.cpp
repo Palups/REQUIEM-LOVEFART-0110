@@ -140,7 +140,7 @@ void GamePlay::reset(GameManager * game)
 	note = new Button(187 + (49 / 2), 331 + (57 / 2), 49, 57, true, OFF);
 	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
 	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
-	changeSide = new Button(1000, 700, 50, 50, true, OFF, "images/btnChangeWall.png");
+	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
 }
 
 
