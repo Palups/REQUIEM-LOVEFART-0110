@@ -3,18 +3,7 @@
 
 /*-- Construtores --*/
 
-Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path)
-{
-	m_x = x;
-	m_y = y;
-	m_width = w;
-	m_height = h;
-	m_drawIt = desenheEle;
-	index = 0;
-	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	dialogFlag = false;
-	m_image.loadImage(path);
-}
+
 Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path)
 {
 	m_x = x;
@@ -48,7 +37,10 @@ void Button::draw()
 {
 	if (m_drawIt)
 	{
-		if (m_estado == ON)
+		ofSetColor(255, 255, 255, 0);
+		ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
+		ofSetColor(255, 255, 255, 255);
+		/*if (m_estado == ON)
 		{
 			ofSetColor(255);
 			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
@@ -60,10 +52,21 @@ void Button::draw()
 			ofSetColor(0);
 			ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
 			ofSetColor(255);
-		}
+		}*/
 	}
+	//ofSetColor(0, 0, 0, 255);
+	//m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
+}
 
-	m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
+void Button::drawImage()
+{
+	//deixar os retangulos até ter as imagens
+		ofSetColor(0);
+		ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
+		ofSetColor(255);
+	
+	//aqui vai desenhar a imagem
+	//m_image.draw(m_x, m_y);
 }
 
 bool Button::mouseOver()

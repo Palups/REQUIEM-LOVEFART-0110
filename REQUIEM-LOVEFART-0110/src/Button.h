@@ -10,12 +10,12 @@ class Button
 public: 
 
 /*-- Construtores --*/
-	Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path);
 	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path);
 	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado);
 
 /*-- Métodos --*/
 	void draw();
+	void drawImage();
 	bool mouseOver(); // ver se o mouse esta em cima dele
 	int getW();  // retorna largura
 	int getH();  // retorn altura

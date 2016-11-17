@@ -40,15 +40,15 @@ void GameMenu::update(GameManager *game)
 void GameMenu::draw(GameManager * game)
 {
 	m_bg.draw(0, 0);
-	btnPlay->draw();
-	//btnExit->draw();
+	btnPlay->drawImage();
+	//btnExit->drawImage();
 }
 
 void GameMenu::reset()
 {
 	//ofSoundStopAll(); //
 	/*---definir as posições---*/
-	btnPlay = new Button(512, 700, 100, 50, true, ON,  "images/menuBtnPlay.png");
+	btnPlay = new Button(512, 700, 100, 50, true, OFF,  "images/menuBtnPlay.png");
 	//btnCredits = new Button(1105, 480, 333, 50, false);
 	//btnExit = new Button(1105, 560, 333, 50, false, "images/menuBtnExit.png");
 

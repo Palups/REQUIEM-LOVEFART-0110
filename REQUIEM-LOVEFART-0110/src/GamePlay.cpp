@@ -103,13 +103,13 @@ void GamePlay::draw(GameManager * game)
 			wall1.draw(0, 0);
 			bed->draw();
 			door->draw();
-			changeSide->draw();
+			changeSide->drawImage();
 			break;
 		case GAME_SIDE_B:
 			wall2.draw(0, 0);
 			toilet->draw();
 			note->draw();
-			changeSide->draw();
+			changeSide->drawImage();
 			break;
 		default:
 			break;
@@ -140,7 +140,7 @@ void GamePlay::reset(GameManager * game)
 	note = new Button(187 + (49 / 2), 331 + (57 / 2), 49, 57, true, OFF);
 	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
 	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
-	changeSide = new Button(750 + (50 / 2), 650 + (50 / 2), 50, 50, true, OFF);
+	changeSide = new Button(1000, 700, 50, 50, true, OFF);
 }
 
 
