@@ -45,7 +45,7 @@ void GameMenu::draw(GameManager * game)
 
 void GameMenu::reset()
 {
-	//ofSoundStopAll(); 
+	//ofSoundStopAll(); //
 	/*---definir as posições---*/
 	btnPlay = new Button(512, 700, 100, 50, true/*, "images/menuBtnPlay.png"*/);
 	//btnCredits = new Button(1105, 480, 333, 50, false);
