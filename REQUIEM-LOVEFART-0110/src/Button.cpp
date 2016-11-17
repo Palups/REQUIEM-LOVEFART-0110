@@ -1,9 +1,52 @@
 #include "Button.h"
 #include "GameManager.h"
 
+/*-- Construtores --*/
+
+Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	index = 0;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	dialogFlag = false;
+	m_image.loadImage(path);
+}
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	m_estado = estado;
+	index = 0;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	dialogFlag = false;
+	m_image.loadImage(path);
+}
+Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
+{
+	m_x = x;
+	m_y = y;
+	m_width = w;
+	m_height = h;
+	m_drawIt = desenheEle;
+	m_estado = estado;
+
+	index = 0;
+	myfont.loadFont("TravelingTypewriter.ttf", 20);
+	dialogFlag = false;
+}
+
+/* -- Draw e outras funções -- */
+
 void Button::draw()
 {
-	/*if (m_drawIt)
+	if (m_drawIt)
 	{
 		if (m_estado == ON)
 		{
@@ -15,42 +58,13 @@ void Button::draw()
 			ofSetColor(255);
 			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
 			ofSetColor(0);
-			ofDrawRectangle(m_x - (getW() / 2)+1, m_y - (getH() / 2)+1, getW()-2, getH()-2);
+			ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
 			ofSetColor(255);
 		}
-	}*/
+	}
 
-	//m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
+	m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
 }
-
-/*-- Construtores --*/
-
-Button::Button(int x, int y, int w, int h, bool desenheEle/*, std::string path*/)
-{
-	m_x = x;
-	m_y = y;
-	m_width = w;
-	m_height = h;
-	m_drawIt = desenheEle;
-	index = 0;
-	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	dialogFlag = false;
-	//m_image.loadImage(path);
-}
-Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado/*, std::string path*/)
-{
-	m_x = x;
-	m_y = y;
-	m_width = w;
-	m_height = h;
-	m_drawIt = desenheEle;
-	m_estado = estado;
-	index = 0;
-	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	dialogFlag = false;
-	//m_image.loadImage(path);
-}
-/* --xxx-- */
 
 bool Button::mouseOver()
 {

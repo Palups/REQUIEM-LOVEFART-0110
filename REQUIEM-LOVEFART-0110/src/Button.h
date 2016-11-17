@@ -1,6 +1,7 @@
 #pragma once
 #include<string>
 #include<vector>
+#include<iostream>
 #include "ofMain.h"
 #include "GameManager.h"
 
@@ -9,8 +10,9 @@ class Button
 public: 
 
 /*-- Construtores --*/
-	Button::Button(int x, int y, int w, int h, bool desenheEle/*, std::string path*/);
-	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado/*, std::string path*/);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, std::string path);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::string path);
+	Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado);
 
 /*-- Métodos --*/
 	void draw();
