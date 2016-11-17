@@ -6,6 +6,7 @@
 GameMenu::GameMenu()
 {
 	m_bg.loadImage("images/menuBackground.png");
+	m_logo.loadImage("images/menuLogo.png");
 	/*---tem que ter a musica antes, né---*/
 	//m_snd_menu.loadSound("sounds/menu.mp3");
 	reset();
@@ -40,6 +41,7 @@ void GameMenu::update(GameManager *game)
 void GameMenu::draw(GameManager * game)
 {
 	m_bg.draw(0, 0);
+	m_logo.draw(262,150);
 	btnPlay->drawImage();
 	//btnExit->drawImage();
 }

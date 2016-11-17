@@ -61,12 +61,12 @@ void Button::draw()
 void Button::drawImage()
 {
 	//deixar os retangulos até ter as imagens
-		ofSetColor(0);
+		/*ofSetColor(0);
 		ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
-		ofSetColor(255);
+		ofSetColor(255);*/
 	
 	//aqui vai desenhar a imagem
-	//m_image.draw(m_x, m_y);
+	m_image.draw(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
 }
 
 bool Button::mouseOver()

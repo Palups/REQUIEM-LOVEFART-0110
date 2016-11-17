@@ -10,6 +10,7 @@ public:
 	Button *btnExit;
 
 	ofImage m_bg;
+	ofImage m_logo;
 
 	ofSoundPlayer m_snd_menu;
 
