@@ -14,7 +14,7 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::st
 	m_estado = estado;
 	index = 0;
 	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	dialogFlag = false;
+	//dialogFlag = false;
 	m_image.loadImage(path);
 }
 Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
@@ -28,7 +28,7 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
 
 	index = 0;
 	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	dialogFlag = false;
+	//dialogFlag = false;
 }
 
 /* -- Draw e outras funções -- */
