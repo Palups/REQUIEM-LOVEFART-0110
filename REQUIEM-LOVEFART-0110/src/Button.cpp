@@ -126,9 +126,19 @@ void Button::addIndex()
 		return;
 }
 
-/*
+
+void Button::enableDialogue()
+{
+	dialogFlag = true;
+}
+
 void Button::disableDialogue()
 {
 	if (dialogFlag)
 		dialogFlag = false;
-}*/
+}
+
+bool Button::dialogActive()
+{
+	return dialogFlag;
+}

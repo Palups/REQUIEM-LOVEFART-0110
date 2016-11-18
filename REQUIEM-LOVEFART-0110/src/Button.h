@@ -36,12 +36,15 @@ public:
 	void pushDialogue(std::string s); // Adiciona dialogo ao vetor
 	void displayDialogue(); // Mostra dialogo
 	
-	void drawHUD(); // Desenha a a caixa do dialogo
+	void drawHUD()1; // Desenha a a caixa do dialogo
 	
 	int getIndex(); // Retorna o indice onde esta o dialogo
 	void addIndex(); // Incrementa o dialogo
 	
+	void enableDialogue(); // Ativa o dialogo
 	void disableDialogue(); // Desativa o dialogo
+
+	bool dialogActive(); // Verifica se dialogo está ativo
 
 private:
 
@@ -49,5 +52,5 @@ private:
 	std::vector <std::string> dialogueList; // Vetor de dialogos
 	
 	int index; // Indice que percorre o vetor
-	//bool dialogFlag; // Boolean para saber se dialogo esta ativo
+	bool dialogFlag; // Boolean para saber se dialogo esta ativo
 };

@@ -15,6 +15,19 @@ GamePlay::~GamePlay()
 
 void GamePlay::update(GameManager * game)
 {
+	/*-- Dialogo --*/
+	if (game->mousePressed)
+	{
+		if (game->dialogueActive == OFF) // Caixa de dialogo está ativa. Desativa ela quando clicar em qualquer lugar
+		{
+			game->dialogueActive = ON;
+			door->disableDialogue();
+			bed->disableDialogue();
+			toilet->disableDialogue();
+			note->disableDialogue();
+		}
+	}
+
 	switch (game->m_day)
 	{
 	case 1:
@@ -37,8 +50,9 @@ void GamePlay::update(GameManager * game)
 				if (game->mousePressed)
 				{
 					door->m_estado = true;
-					door->displayDialogue();
+					std::cout << "cricou na porta porra"<< std::endl;
 					game->dialogueActive = ON;
+					door->enableDialogue();
 				}
 			}
 			if (bed->mouseOver())
@@ -48,6 +62,9 @@ void GamePlay::update(GameManager * game)
 					game->mousePressed)
 				{
 					bed->m_estado = true;
+					std::cout << "cricou na cama porra" << std::endl;
+					game->dialogueActive = ON;
+					door->enableDialogue();
 				}
 			}
 			if (bed->m_estado)
@@ -67,6 +84,9 @@ void GamePlay::update(GameManager * game)
 				if (door->m_estado && game->mousePressed)
 				{
 					note->m_estado = true;
+					std::cout << "cricou no papel porra" << std::endl;
+					game->dialogueActive = ON;
+					door->enableDialogue();
 				}
 			}
 			break;
@@ -93,16 +113,24 @@ void GamePlay::update(GameManager * game)
 		break;
 	}
 
-	/*-- Dialogo --*/
-	if (game->mousePressed)
-	{
-		if (game->dialogueActive == OFF) // Caixa de dialogo está ativa. Desativa ela quando clicar em qualquer lugar
-			game->dialogueActive = ON;
-	}
+
 }
 
 void GamePlay::draw(GameManager * game)
 {
+	if (game->dialogueActive == ON)
+	{
+		if (door->dialogActive)
+			door->displayDialogue();
+		else if (bed->dialogActive())
+			bed->displayDialogue();
+		else if (note->dialogActive())
+			note->displayDialogue();
+		else if (toilet->dialogActive())
+			toilet->displayDialogue();
+
+	}
+
 	switch (game->m_day)
 	{
 	case 1:
@@ -142,6 +170,7 @@ void GamePlay::draw(GameManager * game)
 	}
 
 
+
 }
 
 void GamePlay::reset(GameManager * game)
@@ -155,6 +184,9 @@ void GamePlay::reset(GameManager * game)
 
 	/*-- Dialogo --*/
 	door->pushDialogue("fuck");
+	bed->pushDialogue("me");
+	note->pushDialogue("in the");
+	toilet->pushDialogue("ass");
 }
 
 
