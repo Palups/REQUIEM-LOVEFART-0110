@@ -120,7 +120,7 @@ void GamePlay::draw(GameManager * game)
 {
 	if (game->dialogueActive == ON)
 	{
-		if (door->dialogActive)
+		if (door->dialogActive())
 			door->displayDialogue();
 		else if (bed->dialogActive())
 			bed->displayDialogue();

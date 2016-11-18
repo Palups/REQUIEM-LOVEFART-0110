@@ -36,7 +36,7 @@ public:
 	void pushDialogue(std::string s); // Adiciona dialogo ao vetor
 	void displayDialogue(); // Mostra dialogo
 	
-	void drawHUD()1; // Desenha a a caixa do dialogo
+	void drawHUD(); // Desenha a a caixa do dialogo
 	
 	int getIndex(); // Retorna o indice onde esta o dialogo
 	void addIndex(); // Incrementa o dialogo
