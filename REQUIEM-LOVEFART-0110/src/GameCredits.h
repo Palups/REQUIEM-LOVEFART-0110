@@ -7,15 +7,18 @@
 class GameCredits
 {
 public:
-	/*--variï¿½veis--*/
-	Button *btnBack; //botï¿½o back
+	/*--variáveis--*/
+	Button *btnBack; //botão back
 
 	ofImage m_background;
 
 
-	/*--mï¿½todos--*/
+	/*--métodos--*/
 	GameCredits();
 	~GameCredits();
 
+	void Reset();
+	void Update(GameManager *game);
+	void Draw(GameManager *game);
 };
 
