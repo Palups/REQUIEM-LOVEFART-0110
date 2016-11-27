@@ -28,10 +28,10 @@ public:
 	void dragEvent(ofDragInfo dragInfo);
 	void gotMessage(ofMessage msg);
 
-	GameManager *gameManager;  // O pirocudo. Paizao de todos. Manda chuva. O cafetao.
-
+	GameManager *gameManager;
 	GameMenu *gameMenu;
 	GamePlay *gamePlay;
+
 	/*GameWin *gameWin;
 	GameOver *gameOver;*/
 };

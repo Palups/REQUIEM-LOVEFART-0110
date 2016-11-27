@@ -3,11 +3,9 @@
 
 //--------------------------------------------------------------
 void ofApp::setup() {
-	//ofSetBackgroundColor(0, 0, 0);
-	//ofHideCursor();
+	ofHideCursor();
 
-	gameManager = new GameManager(GAME_MENU); // Tudo comecara no menu
-
+	gameManager = new GameManager(GAME_MENU); //Define o estado de jogo que começa
 	gameMenu = new GameMenu();
 	gamePlay = new GamePlay(gameManager);
 	/*gameWin = new GameWin();
@@ -16,8 +14,7 @@ void ofApp::setup() {
 
 //--------------------------------------------------------------
 void ofApp::update() {
-	switch (gameManager->gameState)
-	{
+	switch (gameManager->gameState){
 	case GAME_MENU:
 		gameMenu->update(gameManager);
 		break;
@@ -39,15 +36,15 @@ void ofApp::update() {
 	default:
 		break;
 	}
-	// Se passou por todos os updates e ninguem usou o clique do mouse, anula o BOOL para simular um clique 
-	// ao inves de deixar ligado, pois seria um "SEGURANDO BOTAO DO MOUSE"
+
+	/*Se passou por todos os updates e ninguem usou o clique do mouse, anula o BOOL para simular um clique  ao inves de deixar ligado,
+	pois seria um "SEGURANDO BOTAO DO MOUSE"*/
 	gameManager->mousePressed = false;
 }
 
 //--------------------------------------------------------------
 void ofApp::draw() {
-	switch (gameManager->gameState)
-	{
+	switch (gameManager->gameState){
 	case GAME_MENU:
 		gameMenu->draw(gameManager);
 		break;
@@ -63,6 +60,8 @@ void ofApp::draw() {
 	default:
 		break;
 	}
+
+	gameManager->draw(); //desenha o cursor do mouse
 }
 
 //--------------------------------------------------------------

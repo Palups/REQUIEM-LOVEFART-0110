@@ -1,20 +1,21 @@
 #include "GameMenu.h"
 #include "GameManager.h"
 
-
-
 GameMenu::GameMenu()
 {
 	m_bg.loadImage("images/menuBackground.png");
-	m_logo.loadImage("images/menuLogo.png");
-	/*---tem que ter a musica antes, né---*/
-	//m_snd_menu.loadSound("sounds/menu.mp3");
+	m_snd_menu.loadSound("sounds/soundtrack_menu.mp3");
 	reset();
 }
 
-
 GameMenu::~GameMenu()
 {
+}
+
+void GameMenu::reset()
+{
+	m_snd_menu.play(); //dá play na música do menu
+	btnPlay = new Button(512, 700, 100, 50, true, OFF, "images/menuBtnPlay.png"); //definindo posição do botão play
 }
 
 void GameMenu::update(GameManager *game)
@@ -26,35 +27,11 @@ void GameMenu::update(GameManager *game)
 			m_snd_menu.stop();
 			game->gameState = GAME_PLAY;
 		}
-	}
-	
-	/*if (btnExit->mouseOver())
-	{
-		if (game->mousePressed)
-		{
-			std::exit(0);
-		}
-	}*/
-	
+	}	
 }
 
 void GameMenu::draw(GameManager * game)
 {
 	m_bg.draw(0, 0);
-	m_logo.draw(262,150);
 	btnPlay->drawImage();
-	//btnExit->drawImage();
-}
-
-void GameMenu::reset()
-{
-	//ofSoundStopAll(); //
-	/*---definir as posições---*/
-	btnPlay = new Button(512, 700, 100, 50, true, OFF,  "images/menuBtnPlay.png");
-	//btnCredits = new Button(1105, 480, 333, 50, false);
-	//btnExit = new Button(1105, 560, 333, 50, false, "images/menuBtnExit.png");
-
-	//m_snd_menu.setLoop(true);
-	//m_snd_menu.play();
-
 }
