@@ -7,17 +7,15 @@
 class GameMenu
 {
 public:
-	/*--variáveis--*/
+	/*-- variáveis --*/
 	Button *btnPlay; //botão play
 	Button *btnCredits; //botão créditos
 
 	ofImage m_bg; //imagem de background
 
-	ofSoundPlayer m_snd_menu; //musica do menu
 
-
-	/*--métodos--*/
-	GameMenu();
+	/*-- métodos --*/
+	GameMenu(GameManager *game);
 	~GameMenu();
 
 	void reset();

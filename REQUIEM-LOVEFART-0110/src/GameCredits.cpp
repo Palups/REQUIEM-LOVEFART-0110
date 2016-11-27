@@ -2,7 +2,7 @@
 
 GameCredits::GameCredits()
 {
-	m_background.loadImage("images/creditsBackground.png");
+	m_background.loadImage("images/creditsBackground.png"); //carrega imagem do background
 	Reset();
 }
 
@@ -17,6 +17,7 @@ void GameCredits::Reset()
 
 void GameCredits::Update(GameManager * game)
 {
+	//se botão back for clicado, jogo vai para a tela de menu
 	if (btnBack->mouseOver())
 		if (game->mousePressed)
 			game->gameState = GAME_MENU;

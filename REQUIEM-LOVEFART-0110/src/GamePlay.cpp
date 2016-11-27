@@ -2,10 +2,8 @@
 
 GamePlay::GamePlay(GameManager *game)
 {
-	wall1.load("images/wall1.png");
-	wall2.load("images/wall2.png");
-
-	m_sound_gameplay.loadSound("sounds/soundtrack_gameplay.mp3");
+	wall1.load("images/wall1.png"); //carrega imagem que contém a cama, porta e duto de ar
+	wall2.load("images/wall2.png"); //carrega imagem que contém vaso sanitário
 
 	reset(game);
 }
@@ -16,8 +14,7 @@ GamePlay::~GamePlay()
 
 void GamePlay::reset(GameManager *game)
 {
-	m_sound_gameplay.play();
-	m_sound_gameplay.setLoop(true); //tocar música em loop
+	game->m_snd_gameplay.setLoop(true); //tocar música do gameplay em loop
 
 	//alocação e inicialização das variáveis
 	bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
@@ -50,87 +47,77 @@ void GamePlay::update(GameManager *game)
 
 
 	/*-- switch case para cada dia de gameplay --*/
-	switch (game->m_day)
-	{
+	switch (game->m_day) {
 	case 1:
-		switch (game->gameSide)
-		{
+		/*-- switch case para cada lado da sala, no primeiro dia --*/
+		switch (game->gameSide) {
 		case GAME_SIDE_HIS:
 			//incluir tela preta e texto de introdução
 			break;
+
 		case GAME_SIDE_A:
 			//cama e porta
 			if (changeSide->mouseOver())
-			{
 				if (game->mousePressed)
-				{
 					game->gameSide = GAME_SIDE_B;
-				}
-			}
+
 			if (door->mouseOver())
-			{
-				if (game->mousePressed)
-				{
+				if (game->mousePressed) {
 					door->m_estado = true;
-					std::cout << "cricou na porta porra"<< std::endl;
+					std::cout << "cricou na porta porra" << std::endl;
 					//game->dialogueActive = ON;
 					//door->enableDialogue();
 				}
-			}
+
 			if (bed->mouseOver())
-			{
-				if (door->m_estado && 
-					note->m_estado && 
-					game->mousePressed)
-				{
+				if (door->m_estado && note->m_estado && game->mousePressed) {
 					bed->m_estado = true;
 					std::cout << "cricou na cama porra" << std::endl;
 					//game->dialogueActive = ON;
 					//door->enableDialogue();
 				}
-			}
+
 			if (bed->m_estado)
 				game->m_day += 1;
+
 			break;
+
 		case GAME_SIDE_B:
 			//bilhete e privada
 			if (changeSide->mouseOver())
-			{
 				if (game->mousePressed)
-				{
 					game->gameSide = GAME_SIDE_A;
-				}
-			}
+
 			if (note->mouseOver())
-			{
-				if (door->m_estado && game->mousePressed)
-				{
+				if (door->m_estado && game->mousePressed) {
 					note->m_estado = true;
 					std::cout << "cricou no papel porra" << std::endl;
 					//game->dialogueActive = ON;
 					//door->enableDialogue();
 				}
-			}
 			break;
+
 		default:
 			break;
 		}
 		break;
+		
 	case 2:
 		std::exit(0);
 		//switch (game->gameSide)
-		//{
-		//case GAME_SIDE_HIS:
-		//	//incluir tela preta e texto de introdução
-		//	break;
-		//case GAME_SIDE_A:
-		//	break;
-		//case GAME_SIDE_B:
-		//	break;
-		//default:
-		//	break;
-		//}
+			//{
+			//case GAME_SIDE_HIS:
+			//	//incluir tela preta e texto de introdução
+			//	break;
+			//case GAME_SIDE_A:
+			//	break;
+			//case GAME_SIDE_B:
+			//	break;
+			//default:
+			//	break;
+			//}
 		break;
+
 	default:
 		break;
 	}
@@ -152,11 +139,10 @@ void GamePlay::draw(GameManager *game)
 
 
 	/*-- switch case para cada dia de gameplay --*/
-	switch (game->m_day)
-	{
+	switch (game->m_day){
 	case 1:
-		switch (game->gameSide)
-		{
+		/*-- switch case para cada lado da sala, no primeiro dia --*/
+		switch (game->gameSide){
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
 			bed->draw();
@@ -174,8 +160,7 @@ void GamePlay::draw(GameManager *game)
 		}
 		break;
 	case 2:
-		switch (game->gameSide)
-		{
+		switch (game->gameSide){
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
 			break;

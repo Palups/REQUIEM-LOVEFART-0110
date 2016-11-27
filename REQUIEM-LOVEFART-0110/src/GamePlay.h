@@ -6,11 +6,9 @@
 class GamePlay
 {
 public:
-	/*--variáveis--*/
+	/*-- variáveis --*/
 	ofImage wall1;  //imagem que contém a cama, porta e duto de ar
 	ofImage wall2;  //imagem que contém vaso sanitário
-
-	ofSoundPlayer m_sound_gameplay; //musica do gameplay
 
 	Button *bed;  //cama
 	Button *note;  //bilhete
@@ -19,7 +17,7 @@ public:
 	Button *changeSide;  //botão que troca as cenas
 
 
-	/*--métodos--*/
+	/*-- métodos --*/
 	GamePlay(GameManager *game);
 	~GamePlay();
 

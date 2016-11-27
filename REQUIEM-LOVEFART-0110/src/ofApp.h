@@ -1,14 +1,11 @@
 #pragma once
 
 #include "ofMain.h"
-
 #include <string>
 #include "GameManager.h"
 #include "GameMenu.h"
 #include "GamePlay.h"
 #include "GameCredits.h"
-//#include "GameWin.h"
-//#include "GameOver.h"
 
 class ofApp : public ofBaseApp {
 
@@ -33,7 +30,4 @@ public:
 	GameMenu *gameMenu;
 	GamePlay *gamePlay;
 	GameCredits *gameCredits;
-
-	/*GameWin *gameWin;
-	GameOver *gameOver;*/
 };

@@ -7,13 +7,13 @@
 class GameCredits
 {
 public:
-	/*--variáveis--*/
+	/*-- variáveis --*/
 	Button *btnBack; //botão back
 
-	ofImage m_background;
+	ofImage m_background; //imagem de background
 
 
-	/*--métodos--*/
+	/*-- métodos --*/
 	GameCredits();
 	~GameCredits();
 

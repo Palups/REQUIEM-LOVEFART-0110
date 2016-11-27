@@ -6,11 +6,9 @@ void ofApp::setup() {
 	ofHideCursor();
 
 	gameManager = new GameManager(GAME_MENU); //Define o estado de jogo que começa
-	gameMenu = new GameMenu();
+	gameMenu = new GameMenu(gameManager);
 	gamePlay = new GamePlay(gameManager);
 	gameCredits = new GameCredits();
-	/*gameWin = new GameWin();
-	gameOver = new GameOver();*/
 }
 
 //--------------------------------------------------------------
@@ -25,16 +23,13 @@ void ofApp::update() {
 	case GAME_PLAY:
 		gamePlay->update(gameManager);
 		break;
-	case GAME_WIN:
-		//gameWin->update();
+	/*case GAME_WIN:
 		break;
 	case GAME_OVER:
-		//gameOver->update();
-		break;
+		break;*/
 	case GAME_RESET:
 		gameMenu->reset();
 		gamePlay->reset(gameManager);
-		//gameOver->reset();
 		gameManager->gameState = GAME_MENU;
 		break;
 	default:
@@ -58,12 +53,12 @@ void ofApp::draw() {
 	case GAME_PLAY:
 		gamePlay->draw(gameManager);
 		break;
-	case GAME_WIN:
-		//gameWin->draw();
+	/*case GAME_WIN:
+		gameWin->draw();
 		break;
 	case GAME_OVER:
-		//gameOver->draw();
-		break;
+		gameOver->draw();
+		break;*/
 	default:
 		break;
 	}
@@ -93,7 +88,7 @@ void ofApp::mouseDragged(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button) {
-	gameManager->mousePressed = true;
+	gameManager->mousePressed = true;  //checar se mouse foi pressionado
 }
 
 //--------------------------------------------------------------
