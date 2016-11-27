@@ -20,6 +20,7 @@
     <ClCompile Include="src\GamePlay.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameCredits.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -46,6 +47,7 @@
     <ClInclude Include="src\GamePlay.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameCredits.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

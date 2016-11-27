@@ -8,6 +8,7 @@ void ofApp::setup() {
 	gameManager = new GameManager(GAME_MENU); //Define o estado de jogo que começa
 	gameMenu = new GameMenu();
 	gamePlay = new GamePlay(gameManager);
+	gameCredits = new GameCredits();
 	/*gameWin = new GameWin();
 	gameOver = new GameOver();*/
 }
@@ -17,6 +18,9 @@ void ofApp::update() {
 	switch (gameManager->gameState){
 	case GAME_MENU:
 		gameMenu->update(gameManager);
+		break;
+	case GAME_CREDITS:
+		gameCredits->Update(gameManager);
 		break;
 	case GAME_PLAY:
 		gamePlay->update(gameManager);
@@ -47,6 +51,9 @@ void ofApp::draw() {
 	switch (gameManager->gameState){
 	case GAME_MENU:
 		gameMenu->draw(gameManager);
+		break;
+	case GAME_CREDITS:
+		gameCredits->Draw(gameManager);
 		break;
 	case GAME_PLAY:
 		gamePlay->draw(gameManager);

@@ -10,6 +10,7 @@
 #define GAME_WIN 2
 #define GAME_OVER 3
 #define GAME_RESET 4
+#define GAME_CREDITS 5
 
 #define ON true
 #define OFF false
