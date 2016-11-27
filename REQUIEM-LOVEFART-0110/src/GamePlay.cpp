@@ -2,8 +2,9 @@
 
 GamePlay::GamePlay(GameManager *game)
 {
-	wall1.load("images/wall1.png"); //carrega imagem que contém a cama, porta e duto de ar
-	wall2.load("images/wall2.png"); //carrega imagem que contém vaso sanitário
+	wall1.loadImage("images/wall1.png"); //carrega imagem que contém a cama, porta e duto de ar
+	wall2.loadImage("images/wall2.png"); //carrega imagem que contém vaso sanitário
+	m_noteText.loadImage("images/noteText.png"); //carrega imagem do texto do bilhete
 
 	reset(game);
 }
@@ -16,9 +17,11 @@ void GamePlay::reset(GameManager *game)
 {
 	game->m_snd_gameplay.setLoop(true); //tocar música do gameplay em loop
 
+	m_showingNote = false;
+
 	//alocação e inicialização das variáveis
 	bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
-	note = new Button(187 + (49 / 2), 331 + (57 / 2), 49, 57, true, OFF);
+	note = new Button(187 + (84 / 2), 331 + (147 / 2), 84, 147, true, OFF, "images/Cenario2_bilhete.png");
 	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
 	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
@@ -83,6 +86,17 @@ void GamePlay::update(GameManager *game)
 			break;
 
 		case GAME_SIDE_B:
+			//se clicar no bilhete na parede, aparece a imagem dele maior. se clicar de novo, a imagem some
+			if (!m_showingNote) {
+				if (game->mousePressed && note->mouseOver()) {
+					m_showingNote = true;
+				}
+			}
+			else {
+				if (game->mousePressed)
+					m_showingNote = false;
+			}
+
 			//bilhete e privada
 			if (changeSide->mouseOver())
 				if (game->mousePressed)
@@ -152,8 +166,10 @@ void GamePlay::draw(GameManager *game)
 		case GAME_SIDE_B:
 			wall2.draw(0, 0);
 			toilet->draw();
-			note->draw();
+			note->drawImage();
 			changeSide->drawImage();
+			if (m_showingNote == true)
+				m_noteText.draw(0, 0);
 			break;
 		default:
 			break;
