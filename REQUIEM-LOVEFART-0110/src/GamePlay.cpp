@@ -50,7 +50,7 @@ void GamePlay::update(GameManager *game)
 	LockCheck();
 	if (m_fimdodia)//caso fim do dia esteja ativo, adiciona um na variavel dia e vai(é o que deveria) pra transição mylla
 	{
-		game->gameSide = GAME_SIDE_TRANS;
+		game->gameState = GAME_OVER;
 		game->m_day++;
 	}
 	/*-- switch case para cada dia de gameplay --*/
@@ -107,13 +107,6 @@ void GamePlay::update(GameManager *game)
 		switch (game->gameSide)
 			{
 			case GAME_SIDE_TRANS:
-				if (m_fimdodia)// teoricamente voltaria para o menu mylla
-				{
-					if (game->mousePressed)
-					{
-						game->gameState = GAME_MENU;
-					}
-				}
 				break;
 			case GAME_SIDE_A:
 				break;
@@ -165,7 +158,6 @@ void GamePlay::draw(GameManager *game)
 	case 2: // se o dia for igual a 2 ele vem pra cá mylla
 		switch (game->gameSide){
 		case GAME_SIDE_TRANS:
-			trans->Draw("images/fim_dia1.png");
 			break;
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);

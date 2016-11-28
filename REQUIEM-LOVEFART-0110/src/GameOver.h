@@ -7,6 +7,7 @@ class GameOver
 {
 private:
 	ofImage m_background;
+	ofImage m_fimdodia;
 public:
 	GameOver();
 	~GameOver();
