@@ -21,6 +21,15 @@
       <Filter>src</Filter>
     </ClCompile>
     <ClCompile Include="src\GameCredits.cpp" />
+    <ClCompile Include="src\Dialogue.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Trigger.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\HUD.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -48,6 +57,15 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\GameCredits.h" />
+    <ClInclude Include="src\Dialogue.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Trigger.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\HUD.h">
+      <Filter>src</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

@@ -20,35 +20,27 @@ void GamePlay::reset(GameManager *game)
 	m_showingNote = false;
 
 	//alocação e inicialização das variáveis
-	bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
+	/*bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
 	note = new Button(187 + (84 / 2), 331 + (147 / 2), 84, 147, true, OFF, "images/Cenario2_bilhete.png");
 	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
 	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
+	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");*/
+
+	hud = new HUD();
+	Bed = new Button(100, 100, 100, 30, BED);
+	Door = new Button(100, 300, 100, 50, DOOR);
+	Toilet = new Button(100, 500, 100, 20, TOILET);
+	Note = new Trigger();
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
 
-	/*-- Dialogo --*/
-	/*door->pushDialogue("fuck");
-	bed->pushDialogue("me");
-	note->pushDialogue("in the");
-	toilet->pushDialogue("ass");*/
+	triggerLock = false;
+	dialogueActive = false;
+	index = 0;
 }
 
 void GamePlay::update(GameManager *game)
 {
-	///*-- Dialogo --*/
-	//if (game->mousePressed)
-	//{
-	//	if (game->dialogueActive == OFF) // Caixa de dialogo está ativa. Desativa ela quando clicar em qualquer lugar
-	//	{
-	//		game->dialogueActive = ON;
-	//		door->disableDialogue();
-	//		bed->disableDialogue();
-	//		toilet->disableDialogue();
-	//		note->disableDialogue();
-	//	}
-	//}
-
-
+	LockCheck();
 	/*-- switch case para cada dia de gameplay --*/
 	switch (game->m_day) {
 	case 1:
@@ -59,37 +51,19 @@ void GamePlay::update(GameManager *game)
 			break;
 
 		case GAME_SIDE_A:
-			//cama e porta
+			/*-- Muda o lado do quarto --*/ //objetos lado A: Cama e porta
 			if (changeSide->mouseOver())
 				if (game->mousePressed)
 					game->gameSide = GAME_SIDE_B;
-
-			if (door->mouseOver())
-				if (game->mousePressed) {
-					door->m_estado = true;
-					std::cout << "cricou na porta porra" << std::endl;
-					//game->dialogueActive = ON;
-					//door->enableDialogue();
-				}
-
-			if (bed->mouseOver())
-				if (door->m_estado && note->m_estado && game->mousePressed) {
-					bed->m_estado = true;
-					std::cout << "cricou na cama porra" << std::endl;
-					//game->dialogueActive = ON;
-					//door->enableDialogue();
-				}
-
-			if (bed->m_estado)
-				game->m_day += 1;
-
 			break;
 
 		case GAME_SIDE_B:
 			//se clicar no bilhete na parede, aparece a imagem dele maior. se clicar de novo, a imagem some
+			//ver depois
 			if (!m_showingNote) {
-				if (game->mousePressed && note->mouseOver()) {
-					m_showingNote = true;
+				if (Note->MouseOver()) {
+					if(game->mousePressed)
+						m_showingNote = true;
 				}
 			}
 			else {
@@ -97,18 +71,10 @@ void GamePlay::update(GameManager *game)
 					m_showingNote = false;
 			}
 
-			//bilhete e privada
+			/*-- Muda o lado do quarto --*/
 			if (changeSide->mouseOver())
 				if (game->mousePressed)
 					game->gameSide = GAME_SIDE_A;
-
-			if (note->mouseOver())
-				if (door->m_estado && game->mousePressed) {
-					note->m_estado = true;
-					std::cout << "cricou no papel porra" << std::endl;
-					//game->dialogueActive = ON;
-					//door->enableDialogue();
-				}
 			break;
 
 		default:
@@ -135,23 +101,11 @@ void GamePlay::update(GameManager *game)
 	default:
 		break;
 	}
+
 }
 
 void GamePlay::draw(GameManager *game)
 {
-	/*if (game->dialogueActive == ON)
-	{
-		if (door->dialogActive())
-			door->displayDialogue();
-		else if (bed->dialogActive())
-			bed->displayDialogue();
-		else if (note->dialogActive())
-			note->displayDialogue();
-		else if (toilet->dialogActive())
-			toilet->displayDialogue();
-	}*/
-
-
 	/*-- switch case para cada dia de gameplay --*/
 	switch (game->m_day){
 	case 1:
@@ -159,14 +113,14 @@ void GamePlay::draw(GameManager *game)
 		switch (game->gameSide){
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
-			bed->draw();
-			door->draw();
+			Bed->draw();
+			Door->draw();
 			changeSide->drawImage();
 			break;
 		case GAME_SIDE_B:
 			wall2.draw(0, 0);
-			toilet->draw();
-			note->drawImage();
+			Toilet->draw();
+			Note->DrawImage();
 			changeSide->drawImage();
 			if (m_showingNote == true)
 				m_noteText.draw(0, 0);
@@ -189,6 +143,182 @@ void GamePlay::draw(GameManager *game)
 		break;
 	default:
 		break;
+	}
+	if (dialogueActive)
+	{
+		hud->Draw();
+	}
+}
+
+void GamePlay::MousePressed(int x, int y, int button)
+{
+	if (!triggerLock)
+	{
+		if (!dialogueActive) // Dialogo está inativo
+		{
+			CheckIndex();
+			if (Bed->WasClicked(x, y))
+			{
+				if (!Bed->IsTrigger(index)) // Dialogo não está trancado por trigger
+				{
+					if (Bed->GetIndex() < index)
+						Bed->AddIndex();
+					dialogueActive = true;
+					hud->Update(Bed);
+				}
+				else // Dialogo trancado
+				{
+					if (TriggerCheck(BED))
+					{
+						if (Bed->GetIndex() < index)
+							Bed->AddIndex();
+						dialogueActive = true;
+						hud->Update(Bed);
+					}
+					else
+					{
+						dialogueActive = true;
+						hud->Update();
+					}
+				}
+			}
+			else if (Door->WasClicked(x, y)) // FOI CLICADO
+			{
+				if (!Door->IsTrigger(index)) // NÃO ESTÁ TRANCADO POR TRIGGER
+				{
+					if (Door->GetIndex() < index)
+						Door->AddIndex();
+					dialogueActive = true;
+					hud->Update(Door);
+				}
+				else // ESTÁ TRANCADO
+				{
+					if (TriggerCheck(DOOR))
+					{
+						if (Door->GetIndex() < index)
+							Door->AddIndex();
+						dialogueActive = true;
+						hud->Update(Door);
+					}
+					else
+					{
+						dialogueActive = true;
+						hud->Update();
+					}
+				}
+			}
+			else if (Toilet->WasClicked(x, y)) // FOI CLICADO
+			{
+				if (!Toilet->IsTrigger(index)) // NÃO TA TRANCADO POR TRIGGER
+				{
+					if (Toilet->GetIndex() < index)
+						Toilet->AddIndex();
+					dialogueActive = true;
+					hud->Update(Toilet);
+				}
+				else // TÁ TRANCADO
+				{
+					if (TriggerCheck(TOILET))
+					{
+						if (Toilet->GetIndex() < index)
+							Toilet->AddIndex();
+						dialogueActive = true;
+						hud->Update(Toilet);
+					}
+					else
+					{
+						dialogueActive = true;
+						hud->Update();
+					}
+				}
+			}
+
+		}
+		else // dialogueActive == true
+		{
+			dialogueActive = false;
+		}
+	}
+	else
+	{
+		if (!dialogueActive)
+		{
+			if (Bed->WasClicked(x, y) || Door->WasClicked(x, y) || Toilet->WasClicked(x, y))
+			{
+				dialogueActive = true;
+				hud->Update();
+			}
+			else if (Note->WasClicked(x, y))
+			{
+				std::cout << "TRIGGER POORRRRRRRRAAAAAAAAAAAAA" << std::endl;
+				triggerLock = false;
+				Bed->ToggleTrigger(index);
+				Door->ToggleTrigger(index);
+				Toilet->ToggleTrigger(index);
+			}
+		}
+		else
+			dialogueActive = false;
+	}
+}
+
+void GamePlay::CheckIndex()
+{
+	if ((Bed->GetState(index) && Door->GetState(index) && Toilet->GetState(index)) && index + 1 < DIALOGUES)
+	{
+		index++;
+		std::cout << Bed->GetIndex() << ", " << Door->GetIndex() << ", " << Toilet->GetIndex() << std::endl;
+		std::cout << "add index master" << std::endl;
+	}
+}
+
+bool GamePlay::TriggerCheck(int object)
+{
+	switch (object)
+	{
+	case BED:
+	{
+		if (Door->GetState(index) && Toilet->GetState(index))
+		{
+			std::cout << "retornou true porra" << std::endl;
+			std::cout << Door->GetState(index) << ", " << Toilet->GetState(index) << std::endl;
+			return true;
+		}
+		return false;
+		break;
+	}
+	case DOOR:
+	{
+		if (Bed->GetState(index) && Toilet->GetState(index))
+		{
+			std::cout << "retornou true porra" << std::endl;
+			std::cout << Bed->GetState(index) << ", " << Toilet->GetState(index) << std::endl;
+			return true;
+		}
+		return false;
+		break;
+	}
+	case TOILET:
+	{
+		if (Bed->GetState(index) && Door->GetState(index))
+		{
+			std::cout << "retornou true porra" << std::endl;
+			std::cout << Bed->GetState(index) << ", " << Door->GetState(index) << std::endl;
+			return true;
+		}
+		return false;
+		break;
+	}
+	default:
+		break;
+	}
+}
+
+void GamePlay::LockCheck()
+{
+	if (Bed->IsTrigger(index) && Door->IsTrigger(index) && Toilet->IsTrigger(index))
+	{
+		triggerLock = true;
 	}
 }
 

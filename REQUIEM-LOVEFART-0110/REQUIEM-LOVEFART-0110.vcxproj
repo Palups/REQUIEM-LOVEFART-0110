@@ -175,23 +175,29 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\Dialogue.cpp" />
     <ClCompile Include="src\GameCredits.cpp" />
     <ClCompile Include="src\Button.cpp" />
     <ClCompile Include="src\GameManager.cpp" />
     <ClCompile Include="src\GameMenu.cpp" />
     <ClCompile Include="src\GamePlay.cpp" />
+    <ClCompile Include="src\HUD.cpp" />
     <ClCompile Include="src\intObject.cpp" />
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\Trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\Dialogue.h" />
     <ClInclude Include="src\GameCredits.h" />
     <ClInclude Include="src\Button.h" />
     <ClInclude Include="src\GameManager.h" />
     <ClInclude Include="src\GameMenu.h" />
     <ClInclude Include="src\GamePlay.h" />
+    <ClInclude Include="src\HUD.h" />
     <ClInclude Include="src\intObject.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\Trigger.h" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="$(OF_ROOT)\libs\openFrameworksCompiled\project\vs\openframeworksLib.vcxproj">

@@ -8,8 +8,8 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::st
 {
 	m_x = x;
 	m_y = y;
-	m_width = w;
-	m_height = h;
+	m_w = w;
+	m_h = h;
 	m_drawIt = desenheEle;
 	m_estado = estado;
 	index = 0;
@@ -17,18 +17,29 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::st
 	//dialogFlag = false;
 	m_image.loadImage(path);
 }
+
 Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
 {
 	m_x = x;
 	m_y = y;
-	m_width = w;
-	m_height = h;
+	m_w = w;
+	m_h = h;
 	m_drawIt = desenheEle;
 	m_estado = estado;
 
 	index = 0;
 	myfont.loadFont("TravelingTypewriter.ttf", 20);
 	//dialogFlag = false;
+}
+
+Button::Button(int x, int y, int w, int h, int object)
+{
+	m_index = 0;
+	m_x = x;
+	m_y = y;
+	m_w = w;
+	m_h = h;
+	Reset(object);
 }
 
 /* -- Draw e outras funções -- */
@@ -38,42 +49,22 @@ void Button::draw()
 	if (m_drawIt)
 	{
 		ofSetColor(255, 255, 255, 0);
-		ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
-		ofSetColor(255, 255, 255, 255);
-		/*if (m_estado == ON)
-		{
-			ofSetColor(255);
-			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
-		}
-		else
-		{
-			ofSetColor(255);
-			ofDrawRectangle(m_x - (getW() / 2), m_y - (getH() / 2), getW(), getH());
-			ofSetColor(0);
-			ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
-			ofSetColor(255);
-		}*/
+		ofDrawRectangle(m_x - (m_w / 2), m_y - (m_h / 2), m_h, m_h);
+		ofSetColor(255, 255, 255, 255);		
 	}
-	//ofSetColor(0, 0, 0, 255);
-	//m_image.draw(m_x, m_y); //será usado pro botão com imagem (quando funcionar)
 }
 
 void Button::drawImage()
-{
-	//deixar os retangulos até ter as imagens
-		/*ofSetColor(0);
-		ofDrawRectangle(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
-		ofSetColor(255);*/
-	
+{	
 	//aqui vai desenhar a imagem
-	m_image.draw(m_x - (getW() / 2) + 1, m_y - (getH() / 2) + 1, getW() - 2, getH() - 2);
+	m_image.draw(m_x - (m_w / 2) + 1, m_y - (m_h / 2) + 1, m_w - 2, m_h - 2);
 }
 
 bool Button::mouseOver()
 {
 	if (
-		((ofGetMouseX() > m_x - (getW() / 2)) && (ofGetMouseX() < m_x + (getW() / 2))) &&
-		((ofGetMouseY() > m_y - (getH() / 2)) && (ofGetMouseY() < m_y + (getH() / 2)))
+		((ofGetMouseX() > m_x - (m_w / 2)) && (ofGetMouseX() < m_x + (m_h / 2))) &&
+		((ofGetMouseY() > m_y - (m_h / 2)) && (ofGetMouseY() < m_y + (m_h / 2)))
 		)
 	{
 		return true;
@@ -83,62 +74,168 @@ bool Button::mouseOver()
 }
 
 /*-- Getters --*/
-int Button::getW()
+//int Button::getW()
+//{
+//	return m_w;
+//}
+//
+//int Button::getH()
+//{
+//	return m_h;
+//}
+
+void Button::Reset(int object)
 {
-	return m_width;
+	switch (object)
+	{
+	case BED:
+		AddDialogue(object);
+		break;
+
+
+	case DOOR:
+		AddDialogue(object);
+		break;
+
+	case TOILET:
+		AddDialogue(object);
+		break;
+	}
 }
 
-int Button::getH()
+std::string Button::GetDialogue()
 {
-	return m_height;
+	return m_dialogueList[m_index]->ShowDialogue();
 }
 
-/*-- Dialogo --*/
-void Button::pushDialogue(std::string s)
+void Button::AddDialogue(int object)
 {
-	dialogueList.push_back(s);
+	switch (object)
+	{
+
+	case BED:
+	{
+		std::cout << "adicionou dialogo" << std::endl;
+
+		Dialogue *a = new Dialogue();
+		a->PushDialogue("fuck");
+		a->SetTrigger(false);
+		m_dialogueList.push_back(a);
+
+		Dialogue *b = new Dialogue();
+		b->PushDialogue("me");
+		b->SetTrigger(true);
+		b->PushTrigger(DOOR);
+		b->PushTrigger(TOILET);
+		m_dialogueList.push_back(b);
+
+		Dialogue *c = new Dialogue();
+		c->PushDialogue("amendoim");
+		c->SetTrigger(true);
+		c->PushTrigger(DOOR);
+		c->PushTrigger(TOILET);
+		m_dialogueList.push_back(c);
+
+		Dialogue *d = new Dialogue();
+		d->PushDialogue("fuck me");
+		d->SetTrigger(false);
+		m_dialogueList.push_back(d);
+
+		break;
+	}
+
+	case DOOR:
+	{
+
+		Dialogue *c = new Dialogue();
+		c->PushDialogue("caralho");
+		c->SetTrigger(false);
+		m_dialogueList.push_back(c);
+
+		Dialogue *d = new Dialogue();
+		d->PushDialogue("porra");
+		d->SetTrigger(false);
+		m_dialogueList.push_back(d);
+
+		Dialogue *e = new Dialogue();
+		e->PushDialogue("abacaxi");
+		e->SetTrigger(true);
+		e->PushTrigger(BED);
+		e->PushTrigger(TOILET);
+		m_dialogueList.push_back(e);
+
+		Dialogue *f = new Dialogue();
+		f->PushDialogue("Caralho porra");
+		f->SetTrigger(false);
+		m_dialogueList.push_back(f);
+
+		break;
+	}
+
+	case TOILET:
+	{
+		Dialogue *a = new Dialogue();
+		a->PushDialogue("puta merda");
+		a->SetTrigger(false);
+		m_dialogueList.push_back(a);
+
+		Dialogue *b = new Dialogue();
+		b->PushDialogue("puta que pariu");
+		b->SetTrigger(false);
+		m_dialogueList.push_back(b);
+
+		Dialogue *c = new Dialogue();
+		c->PushDialogue("abacate");
+		c->SetTrigger(true);
+		c->PushTrigger(BED);
+		c->PushTrigger(DOOR);
+		m_dialogueList.push_back(c);
+
+		Dialogue *d = new Dialogue();
+		d->PushDialogue("puta merda pqp");
+		d->SetTrigger(false);
+		m_dialogueList.push_back(d);
+
+		break;
+	}
+	}
 }
 
-void Button::displayDialogue()
+void Button::AddIndex()
 {
-	drawHUD();
-	ofSetColor(255, 255, 255);
-	myfont.drawString(dialogueList[index], 100, 674);
+	if (m_index + 1 < m_dialogueList.size())
+	{
+		std::cout << "Adicionado index " << m_index + 1 << std::endl;
+		m_index++;
+	}
 }
 
-void Button::drawHUD()
+bool Button::IsTrigger(int i)
 {
-	//Cor e desenho da caixa de dialogo
-	ofSetColor(0, 0, 0);
-	ofDrawRectRounded(7, 635, 1010, 100, 5);
+	return m_dialogueList[i]->IsTrigger();
 }
 
-int Button::getIndex()
+void Button::ToggleTrigger(int i)
 {
-	return index;
+	m_dialogueList[i]->SetTrigger(false);
 }
 
-void Button::addIndex()
+bool Button::WasClicked(int x, int y)
 {
-	if (index < (dialogueList.size() - 1)) // Condição para que o index não saia do vetor e retorne lixo
-		index++;
-	else
-		return;
+	if (x > m_x && x < (m_x + m_w) && y > m_y && y < (m_y + m_h))
+	{
+		std::cout << "cricou!!!" << std::endl;
+		return true;
+	}
+	return false;
 }
 
-
-void Button::enableDialogue()
+bool Button::GetState(int i)
 {
-	dialogFlag = true;
+	return m_dialogueList[i]->GetState();
 }
 
-void Button::disableDialogue()
+int Button::GetIndex()
 {
-	if (dialogFlag)
-		dialogFlag = false;
-}
-
-bool Button::dialogActive()
-{
-	return dialogFlag;
+	return m_index;
 }
