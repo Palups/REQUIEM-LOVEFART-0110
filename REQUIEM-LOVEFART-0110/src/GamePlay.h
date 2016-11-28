@@ -32,7 +32,7 @@ public:
 	void draw(GameManager *game);
 
 	/*-- Dialogos --*/
-	void MousePressed(int x, int y, int button); // Testa se o objeto foi pressionado
+	void MousePressed(int x, int y, int button, GameManager *game); // Testa se o objeto foi pressionado
 	void CheckIndex();
 	bool TriggerCheck(int object); // Checa os triggers caso um objeto for trancado por trigger
 	void LockCheck(); // Testa se todos os objetos estão trancados

@@ -106,28 +106,28 @@ void Button::AddDialogue(int object)
 		std::cout << "adicionou dialogo" << std::endl;
 
 		Dialogue *a = new Dialogue();
-		a->PushDialogue("fuck");
-		a->SetTrigger(false);
+		a->PushDialogue("Preciso sair daqui");
+		a->SetTrigger(true); // Olha o bilhete antes de explorar o quarto
 		m_dialogueList.push_back(a);
 
 		Dialogue *b = new Dialogue();
 		b->PushDialogue("me");
-		b->SetTrigger(true);
+		b->SetTrigger(false);
 		b->PushTrigger(DOOR);
 		b->PushTrigger(TOILET);
 		m_dialogueList.push_back(b);
 
 		Dialogue *c = new Dialogue();
-		c->PushDialogue("amendoim");
-		c->SetTrigger(true);
+		c->PushDialogue("Nao me sinto bem... Vou me deitar");
+		c->SetTrigger(true); // Ultima interação no quarto
 		c->PushTrigger(DOOR);
 		c->PushTrigger(TOILET);
 		m_dialogueList.push_back(c);
 
-		Dialogue *d = new Dialogue();
+		/*Dialogue *d = new Dialogue();
 		d->PushDialogue("fuck me");
 		d->SetTrigger(false);
-		m_dialogueList.push_back(d);
+		m_dialogueList.push_back(d);*/
 
 		break;
 	}
@@ -136,26 +136,26 @@ void Button::AddDialogue(int object)
 	{
 
 		Dialogue *c = new Dialogue();
-		c->PushDialogue("caralho");
-		c->SetTrigger(false);
+		c->PushDialogue("Tem alguem ai?!! ");
+		c->SetTrigger(true);
 		m_dialogueList.push_back(c);
 
 		Dialogue *d = new Dialogue();
-		d->PushDialogue("porra");
+		d->PushDialogue("Esta trancado");
 		d->SetTrigger(false);
 		m_dialogueList.push_back(d);
 
 		Dialogue *e = new Dialogue();
-		e->PushDialogue("abacaxi");
-		e->SetTrigger(true);
+		e->PushDialogue("Alguem me ajude!!");
+		e->SetTrigger(false);
 		e->PushTrigger(BED);
 		e->PushTrigger(TOILET);
 		m_dialogueList.push_back(e);
 
-		Dialogue *f = new Dialogue();
+		/*Dialogue *f = new Dialogue();
 		f->PushDialogue("Caralho porra");
 		f->SetTrigger(false);
-		m_dialogueList.push_back(f);
+		m_dialogueList.push_back(f);*/
 
 		break;
 	}
@@ -163,26 +163,26 @@ void Button::AddDialogue(int object)
 	case TOILET:
 	{
 		Dialogue *a = new Dialogue();
-		a->PushDialogue("puta merda");
-		a->SetTrigger(false);
+		a->PushDialogue("Eca uma privada do lado de uma cama?");
+		a->SetTrigger(true);
 		m_dialogueList.push_back(a);
 
 		Dialogue *b = new Dialogue();
-		b->PushDialogue("puta que pariu");
+		b->PushDialogue("Sera que estou numa prisao?");
 		b->SetTrigger(false);
 		m_dialogueList.push_back(b);
 
 		Dialogue *c = new Dialogue();
-		c->PushDialogue("abacate");
-		c->SetTrigger(true);
+		c->PushDialogue("Nao me sinto bem..");
+		c->SetTrigger(false);
 		c->PushTrigger(BED);
 		c->PushTrigger(DOOR);
 		m_dialogueList.push_back(c);
 
-		Dialogue *d = new Dialogue();
+		/*Dialogue *d = new Dialogue();
 		d->PushDialogue("puta merda pqp");
 		d->SetTrigger(false);
-		m_dialogueList.push_back(d);
+		m_dialogueList.push_back(d);*/
 
 		break;
 	}

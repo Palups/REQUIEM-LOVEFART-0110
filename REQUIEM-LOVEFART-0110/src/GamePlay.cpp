@@ -150,14 +150,14 @@ void GamePlay::draw(GameManager *game)
 	}
 }
 
-void GamePlay::MousePressed(int x, int y, int button)
+void GamePlay::MousePressed(int x, int y, int button, GameManager *game)
 {
 	if (!triggerLock)
 	{
 		if (!dialogueActive) // Dialogo está inativo
 		{
 			CheckIndex();
-			if (Bed->WasClicked(x, y))
+			if (Bed->WasClicked(x, y) && game->gameSide == GAME_SIDE_A)
 			{
 				if (!Bed->IsTrigger(index)) // Dialogo não está trancado por trigger
 				{
@@ -182,7 +182,7 @@ void GamePlay::MousePressed(int x, int y, int button)
 					}
 				}
 			}
-			else if (Door->WasClicked(x, y)) // FOI CLICADO
+			else if (Door->WasClicked(x, y) && game->gameSide == GAME_SIDE_A) // FOI CLICADO
 			{
 				if (!Door->IsTrigger(index)) // NÃO ESTÁ TRANCADO POR TRIGGER
 				{
@@ -207,7 +207,7 @@ void GamePlay::MousePressed(int x, int y, int button)
 					}
 				}
 			}
-			else if (Toilet->WasClicked(x, y)) // FOI CLICADO
+			else if (Toilet->WasClicked(x, y) && game->gameSide == GAME_SIDE_B) // FOI CLICADO
 			{
 				if (!Toilet->IsTrigger(index)) // NÃO TA TRANCADO POR TRIGGER
 				{
@@ -248,7 +248,7 @@ void GamePlay::MousePressed(int x, int y, int button)
 				dialogueActive = true;
 				hud->Update();
 			}
-			else if (Note->WasClicked(x, y))
+			else if (Note->WasClicked(x, y) && game->gameSide == GAME_SIDE_B)
 			{
 				std::cout << "TRIGGER POORRRRRRRRAAAAAAAAAAAAA" << std::endl;
 				triggerLock = false;
