@@ -186,6 +186,7 @@
     <ClCompile Include="src\main.cpp" />
     <ClCompile Include="src\Objetivo.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
+    <ClCompile Include="src\Transicao.cpp" />
     <ClCompile Include="src\Trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -199,6 +200,7 @@
     <ClInclude Include="src\intObject.h" />
     <ClInclude Include="src\Objetivo.h" />
     <ClInclude Include="src\ofApp.h" />
+    <ClInclude Include="src\Transicao.h" />
     <ClInclude Include="src\Trigger.h" />
   </ItemGroup>
   <ItemGroup>

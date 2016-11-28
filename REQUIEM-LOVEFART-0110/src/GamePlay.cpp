@@ -33,6 +33,7 @@ void GamePlay::reset(GameManager *game)
 	Note = new Trigger();
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
 	objetivo = new Objetivo();
+	trans = new Transicao();
 
 	triggerLock = false;
 	dialogueActive = false;
@@ -49,6 +50,8 @@ void GamePlay::update(GameManager *game)
 		switch (game->gameSide) {
 		case GAME_SIDE_HIS:
 			//incluir tela preta e texto de introdução
+			if (game->mousePressed)
+				game->gameSide = GAME_SIDE_A;
 			break;
 
 		case GAME_SIDE_A:
@@ -113,6 +116,9 @@ void GamePlay::draw(GameManager *game)
 	case 1:
 		/*-- switch case para cada lado da sala, no primeiro dia --*/
 		switch (game->gameSide){
+		case GAME_SIDE_HIS:
+			trans->Draw("images/prologue.png");
+			break;
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
 			Bed->draw();
@@ -150,7 +156,8 @@ void GamePlay::draw(GameManager *game)
 	{
 		hud->Draw();
 	}
-	objetivo->Draw();
+	if(game->gameSide!=GAME_SIDE_HIS)
+		objetivo->Draw();
 }
 
 void GamePlay::MousePressed(int x, int y, int button, GameManager *game)

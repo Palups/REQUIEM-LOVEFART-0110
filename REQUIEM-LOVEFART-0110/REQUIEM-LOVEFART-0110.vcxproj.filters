@@ -33,6 +33,9 @@
     <ClCompile Include="src\Objetivo.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\Transicao.cpp">
+      <Filter>src</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -70,6 +73,9 @@
       <Filter>src</Filter>
     </ClInclude>
     <ClInclude Include="src\Objetivo.h">
+      <Filter>src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Transicao.h">
       <Filter>src</Filter>
     </ClInclude>
   </ItemGroup>
