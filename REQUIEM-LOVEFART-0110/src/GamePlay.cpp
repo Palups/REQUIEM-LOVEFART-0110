@@ -32,7 +32,7 @@ void GamePlay::reset(GameManager *game)
 	Toilet = new Button(580, 546, 135, 145, TOILET);
 	Note = new Trigger();
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
-	objetivo = new Objetivo;
+	objetivo = new Objetivo();
 
 	triggerLock = false;
 	dialogueActive = false;
