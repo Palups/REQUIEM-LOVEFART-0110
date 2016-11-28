@@ -16,6 +16,8 @@ public:
 	ofImage wall1;  //imagem que contém a cama, porta e duto de ar
 	ofImage wall2;  //imagem que contém vaso sanitário
 	ofImage m_noteText; //imagem com texto do bilhete
+	ofImage crack1; //rachadura no lado A
+	ofImage crack2; //rachadura no lado B
 
 	//Button *bed;  //cama
 	//Button *note;  //bilhete
@@ -42,6 +44,7 @@ public:
 
 private:
 	HUD *hud;
+	Button *m_illuminati;
 	Button *Bed;
 	Button *Door;
 	Button *Toilet;

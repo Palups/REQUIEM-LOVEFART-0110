@@ -5,6 +5,8 @@ GamePlay::GamePlay(GameManager *game)
 	wall1.loadImage("images/wall1.png"); //carrega imagem que contém a cama, porta e duto de ar
 	wall2.loadImage("images/wall2.png"); //carrega imagem que contém vaso sanitário
 	m_noteText.loadImage("images/noteText.png"); //carrega imagem do texto do bilhete
+	crack1.loadImage("images/Cenario2_desenho1.png"); //carrega imagem da rachadura do lado A
+	crack2.loadImage("images/Cenario2_desenho2.png"); //carrega imagem da rachadura do lado B
 
 	reset(game);
 }
@@ -27,6 +29,7 @@ void GamePlay::reset(GameManager *game)
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");*/
 
 	hud = new HUD();
+	m_illuminati = new Button(925, 80, 39, 78, true, OFF, "images/Cenario2_desenho3.png");
 	Bed = new Button(75, 550, 500, 100, BED);
 	Door = new Button(710, 292, 213, 385, DOOR);
 	Toilet = new Button(580, 546, 135, 145, TOILET);
@@ -72,6 +75,11 @@ void GamePlay::update(GameManager *game)
 			break;
 
 		case GAME_SIDE_B:
+			//cricou no illuminati vc morreu
+			if (m_illuminati->mouseOver())
+				if (game->mousePressed)
+					game->gameSide = GAME_OVER;
+
 			//se clicar no bilhete na parede, aparece a imagem dele maior. se clicar de novo, a imagem some
 			if (!m_showingNote) {
 				if (Note->MouseOver()) {
@@ -134,12 +142,15 @@ void GamePlay::draw(GameManager *game)
 			break;
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
+			crack1.draw(580, 450);
 			Bed->draw();
 			Door->draw();
 			changeSide->drawImage();
 			break;
 		case GAME_SIDE_B:
 			wall2.draw(0, 0);
+			crack2.draw(650, 150);
+			m_illuminati->drawImage();
 			Toilet->draw();
 			//Note->Draw();
 			Note->DrawImage();

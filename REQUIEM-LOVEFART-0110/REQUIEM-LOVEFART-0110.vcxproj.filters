@@ -36,6 +36,7 @@
     <ClCompile Include="src\Transicao.cpp">
       <Filter>src</Filter>
     </ClCompile>
+    <ClCompile Include="src\GameOver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="src">
@@ -78,6 +79,7 @@
     <ClInclude Include="src\Transicao.h">
       <Filter>src</Filter>
     </ClInclude>
+    <ClInclude Include="src\GameOver.h" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="icon.rc" />

@@ -9,6 +9,7 @@ void ofApp::setup() {
 	gameMenu = new GameMenu(gameManager);
 	gamePlay = new GamePlay(gameManager);
 	gameCredits = new GameCredits();
+	gameOver = new GameOver();
 }
 
 //--------------------------------------------------------------
@@ -23,10 +24,9 @@ void ofApp::update() {
 	case GAME_PLAY:
 		gamePlay->update(gameManager);
 		break;
-	/*case GAME_WIN:
-		break;
 	case GAME_OVER:
-		break;*/
+		gameOver->Update(gameManager);
+		break;
 	case GAME_RESET:
 		gameMenu->reset();
 		gamePlay->reset(gameManager);
@@ -53,12 +53,9 @@ void ofApp::draw() {
 	case GAME_PLAY:
 		gamePlay->draw(gameManager);
 		break;
-	/*case GAME_WIN:
-		gameWin->draw();
-		break;
 	case GAME_OVER:
-		gameOver->draw();
-		break;*/
+		gameOver->Draw(gameManager);
+		break;
 	default:
 		break;
 	}
@@ -112,7 +109,7 @@ void ofApp::mouseExited(int x, int y) {
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h) {
-
+	ofSetWindowShape(WINDOW_WIDTH, WINDOW_HEIGHT);
 }
 
 //--------------------------------------------------------------

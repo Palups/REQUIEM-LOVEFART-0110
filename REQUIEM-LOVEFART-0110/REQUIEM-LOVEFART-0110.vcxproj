@@ -175,6 +175,7 @@
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="src\GameOver.cpp" />
     <ClCompile Include="src\Dialogue.cpp" />
     <ClCompile Include="src\GameCredits.cpp" />
     <ClCompile Include="src\Button.cpp" />
@@ -190,6 +191,7 @@
     <ClCompile Include="src\Trigger.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\GameOver.h" />
     <ClInclude Include="src\Dialogue.h" />
     <ClInclude Include="src\GameCredits.h" />
     <ClInclude Include="src\Button.h" />

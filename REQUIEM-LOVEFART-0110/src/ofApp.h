@@ -6,6 +6,7 @@
 #include "GameMenu.h"
 #include "GamePlay.h"
 #include "GameCredits.h"
+#include "GameOver.h"
 
 class ofApp : public ofBaseApp {
 
@@ -30,4 +31,5 @@ public:
 	GameMenu *gameMenu;
 	GamePlay *gamePlay;
 	GameCredits *gameCredits;
+	GameOver *gameOver;
 };
