@@ -12,9 +12,9 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado, std::st
 	m_h = h;
 	m_drawIt = desenheEle;
 	m_estado = estado;
-	//index = 0;
+	
 	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	//dialogFlag = false;
+	
 	m_image.loadImage(path);
 }
 
@@ -27,9 +27,9 @@ Button::Button(int x, int y, int w, int h, bool desenheEle, bool estado)
 	m_drawIt = desenheEle;
 	m_estado = estado;
 
-	//index = 0;
+	
 	myfont.loadFont("TravelingTypewriter.ttf", 20);
-	//dialogFlag = false;
+	
 }
 
 Button::Button(int x, int y, int w, int h, int object)
@@ -49,7 +49,7 @@ Button::Button(int x, int y, int w, int h, int object)
 void Button::draw()
 {
 	ofSetColor(0, 0, 0, 255);
-	ofDrawRectangle(m_x /*- (m_w / 2)*/, m_y /*- (m_h / 2)*/, m_w, m_h);
+	ofDrawRectangle(m_x, m_y, m_w, m_h);
 	ofSetColor(255, 255, 255, 255);
 }
 
