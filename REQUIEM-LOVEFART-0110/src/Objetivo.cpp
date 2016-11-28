@@ -4,6 +4,7 @@
 
 Objetivo::Objetivo()
 {
+	myfont.loadFont("TravelingTypewriter.ttf", 10);
 	m_background.loadImage("images/objBackground.png");
 	Reset();
 }
@@ -17,7 +18,8 @@ void Objetivo::Draw()
 	ofSetColor(0, 0, 0, 190);
 	m_background.draw(m_posBackgroundX, m_posBackgroundY);
 	ofSetColor(255, 255, 255, 255);
-	ofDrawBitmapString("Objetivo: \n- Sobreviva ao primeiro dia. \n", m_posTextX, m_posTextY);
+	//ofDrawBitmapString("Objetivo: \n- Sobreviva ao primeiro dia. \n", m_posTextX, m_posTextY);
+	myfont.drawString("Objetivo: \n- Sobreviva ao primeiro dia. \n", m_posTextX, m_posTextY);
 	ofSetColor(255);
 }
 

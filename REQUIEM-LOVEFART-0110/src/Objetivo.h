@@ -8,6 +8,7 @@ private:
 	float m_posTextX, m_posTextY;
 	float m_posBackgroundX, m_posBackgroundY;
 	ofImage m_background;
+	ofTrueTypeFont myfont;
 public:
 	Objetivo();
 

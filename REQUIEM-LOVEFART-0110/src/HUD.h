@@ -14,6 +14,7 @@ public:
 	~HUD();
 
 private:
+	ofTrueTypeFont myfont;
 	std::string m_dialogue;
 	int
 		m_x,

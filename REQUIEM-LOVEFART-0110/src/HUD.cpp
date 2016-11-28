@@ -3,6 +3,7 @@
 
 HUD::HUD()
 {
+	myfont.loadFont("TravelingTypewriter.ttf", 12);
 	Reset();
 }
 
@@ -34,7 +35,8 @@ void HUD::Draw()
 void HUD::DrawDialogue()
 {
 	ofSetColor(255, 255, 255);
-	ofDrawBitmapString(m_dialogue, 40, 690);
+	//ofDrawBitmapString(m_dialogue, 40, 690);
+	myfont.drawString(m_dialogue, 40, 690);
 }
 
 
