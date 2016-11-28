@@ -35,6 +35,8 @@ void GamePlay::reset(GameManager *game)
 	objetivo = new Objetivo();
 	trans = new Transicao();
 
+	m_fimdodia = false; //set da variave fim do dia
+
 	triggerLock = false;
 	dialogueActive = false;
 	index = 0;
@@ -43,15 +45,23 @@ void GamePlay::reset(GameManager *game)
 void GamePlay::update(GameManager *game)
 {
 	LockCheck();
+	if (m_fimdodia)//caso fim do dia esteja ativo, adiciona um na variavel dia e vai(é o que deveria) pra transição mylla
+	{
+		game->gameSide = GAME_SIDE_TRANS;
+		game->m_day++;
+	}
 	/*-- switch case para cada dia de gameplay --*/
 	switch (game->m_day) {
 	case 1:
 		/*-- switch case para cada lado da sala, no primeiro dia --*/
 		switch (game->gameSide) {
-		case GAME_SIDE_HIS:
+		case GAME_SIDE_TRANS:
 			//incluir tela preta e texto de introdução
-			if (game->mousePressed)
-				game->gameSide = GAME_SIDE_A;
+			if (m_fimdodia == false)
+			{
+				if (game->mousePressed)
+					game->gameSide = GAME_SIDE_A;
+			}
 			break;
 
 		case GAME_SIDE_A:
@@ -86,19 +96,24 @@ void GamePlay::update(GameManager *game)
 		break;
 		
 	case 2:
-		std::exit(0);
-		//switch (game->gameSide)
-			//{
-			//case GAME_SIDE_HIS:
-			//	//incluir tela preta e texto de introdução
-			//	break;
-			//case GAME_SIDE_A:
-			//	break;
-			//case GAME_SIDE_B:
-			//	break;
-			//default:
-			//	break;
-			//}
+		switch (game->gameSide)
+			{
+			case GAME_SIDE_TRANS:
+				if (m_fimdodia)// teoricamente voltaria para o menu mylla
+				{
+					if (game->mousePressed)
+					{
+						game->gameState = GAME_MENU;
+					}
+				}
+				break;
+			case GAME_SIDE_A:
+				break;
+			case GAME_SIDE_B:
+				break;
+			default:
+				break;
+			}
 		break;
 
 	default:
@@ -114,7 +129,7 @@ void GamePlay::draw(GameManager *game)
 	case 1:
 		/*-- switch case para cada lado da sala, no primeiro dia --*/
 		switch (game->gameSide){
-		case GAME_SIDE_HIS:
+		case GAME_SIDE_TRANS:
 			trans->Draw("images/prologue.png");
 			break;
 		case GAME_SIDE_A:
@@ -136,8 +151,11 @@ void GamePlay::draw(GameManager *game)
 			break;
 		}
 		break;
-	case 2:
+	case 2: // se o dia for igual a 2 ele vem pra cá mylla
 		switch (game->gameSide){
+		case GAME_SIDE_TRANS:
+			trans->Draw("images/fim_dia1.png");
+			break;
 		case GAME_SIDE_A:
 			wall1.draw(0, 0);
 			break;
@@ -155,7 +173,7 @@ void GamePlay::draw(GameManager *game)
 	{
 		hud->Draw();
 	}
-	if(game->gameSide!=GAME_SIDE_HIS)
+	if(game->gameSide!=GAME_SIDE_TRANS)
 		objetivo->Draw();
 }
 
@@ -290,6 +308,7 @@ bool GamePlay::TriggerCheck(int object)
 	{
 		if (Door->GetState(index) && Toilet->GetState(index))
 		{
+			m_fimdodia = true; //ativa o fim do dia para mudar os estados mylla
 			std::cout << "retornou true porra" << std::endl;
 			std::cout << Door->GetState(index) << ", " << Toilet->GetState(index) << std::endl;
 			return true;

@@ -10,7 +10,7 @@
 #define GAME_RESET 4
 #define GAME_CREDITS 5
 
-#define GAME_SIDE_HIS 6 //tela de auxílio - introdução, mensagens dei início, etc
+#define GAME_SIDE_TRANS 6 //tela de auxílio - introdução, mensagens dei início, etc
 #define GAME_SIDE_A 7 
 #define GAME_SIDE_B 8
 

@@ -24,6 +24,7 @@ public:
 	//Button *changeSide;  //botão que troca as cenas
 
 	bool m_showingNote; //mostrando texto do bilhete
+	bool m_fimdodia;
 
 	/*-- métodos --*/
 	GamePlay(GameManager *game);
