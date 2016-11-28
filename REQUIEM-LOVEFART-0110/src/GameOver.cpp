@@ -24,7 +24,10 @@ void GameOver::Update(GameManager * game)
 void GameOver::Draw(GameManager * game)
 {
 	if (game->m_day > 1)
+	{
 		m_fimdodia.draw(0, 0);
+	}
+
 	else
 	{
 		m_background.draw(0, 0);

@@ -24,13 +24,6 @@ void GamePlay::reset(GameManager *game)
 
 	m_showingNote = false;
 
-	//alocação e inicialização das variáveis
-	/*bed = new Button(75 + (465 / 2), 550 + (100 / 2), 465, 100, true, OFF);
-	note = new Button(187 + (84 / 2), 331 + (147 / 2), 84, 147, true, OFF, "images/Cenario2_bilhete.png");
-	door = new Button(710 + (213 / 2), 292 + (385 / 2), 213, 385, true, OFF);
-	toilet = new Button(580 + (135 / 2), 546 + (145 / 2), 135, 145, true, OFF);
-	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");*/
-
 	hud = new HUD();
 	m_illuminati = new Button(925, 80, 39, 78, true, OFF, "images/Cenario2_desenho3.png");
 	Bed = new Button(75, 550, 500, 100, BED);
@@ -41,7 +34,7 @@ void GamePlay::reset(GameManager *game)
 	objetivo = new Objetivo();
 	trans = new Transicao();
 
-	//game->m_day = 1;
+	game->m_day = 1;
 
 	m_fimdodia = false; //set da variave fim do dia
 

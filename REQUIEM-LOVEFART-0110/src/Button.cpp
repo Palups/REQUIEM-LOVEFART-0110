@@ -48,7 +48,7 @@ Button::Button(int x, int y, int w, int h, int object)
 
 void Button::draw()
 {
-	ofSetColor(0, 0, 0, 255);
+	ofSetColor(0, 0, 0, 0);
 	ofDrawRectangle(m_x, m_y, m_w, m_h);
 	ofSetColor(255, 255, 255, 255);
 }
