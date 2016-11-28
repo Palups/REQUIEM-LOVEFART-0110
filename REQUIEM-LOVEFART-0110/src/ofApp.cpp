@@ -93,7 +93,11 @@ void ofApp::mousePressed(int x, int y, int button) {
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button) {
-
+	switch (gameManager->gameState)
+	{
+	case GAME_PLAY:
+		gamePlay->MousePressed(x, y, button);
+	}
 }
 
 //--------------------------------------------------------------

@@ -55,10 +55,10 @@ public:
 private:
 
 	ofTrueTypeFont myfont; // Fonte
-	std::vector <std::string> dialogueList; // Vetor de dialogos
+	//std::vector <std::string> dialogueList; // Vetor de dialogos
 	
-	int index; // Indice que percorre o vetor
-	bool dialogFlag; // Boolean para saber se dialogo esta ativo
+	//int index; // Indice que percorre o vetor
+	//bool dialogFlag; // Boolean para saber se dialogo esta ativo
 
 	int
 		m_index,
