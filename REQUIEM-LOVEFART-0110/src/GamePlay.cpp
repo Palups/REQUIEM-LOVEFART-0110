@@ -42,7 +42,7 @@ void GamePlay::reset(GameManager *game)
 	dialogueActive = false;
 	index = 0;
 
-	ofSoundStopAll();
+	//ofSoundStopAll();
 }
 
 void GamePlay::update(GameManager *game)
