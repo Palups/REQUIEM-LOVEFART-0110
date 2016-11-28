@@ -7,7 +7,7 @@
 #include "Objetivo.h"
 #include "Transicao.h"
 
-#define DIALOGUES 4 //numero de dialogos
+#define DIALOGUES 3 //numero de dialogos
 
 class GamePlay
 {

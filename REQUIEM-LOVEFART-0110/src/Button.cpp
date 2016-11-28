@@ -111,7 +111,7 @@ void Button::AddDialogue(int object)
 		m_dialogueList.push_back(a);
 
 		Dialogue *b = new Dialogue();
-		b->PushDialogue("me");
+		b->PushDialogue("Esse colchao nao me parece muito confortavel...");
 		b->SetTrigger(false);
 		b->PushTrigger(DOOR);
 		b->PushTrigger(TOILET);

@@ -9,8 +9,8 @@ HUD::HUD()
 void HUD::Reset()
 {
 	m_x = 20;
-	m_y = 610;
-	m_w = 980;
+	m_y = 660;
+	m_w = 910;
 	m_h = 90;
 }
 
@@ -34,7 +34,7 @@ void HUD::Draw()
 void HUD::DrawDialogue()
 {
 	ofSetColor(255, 255, 255);
-	ofDrawBitmapString(m_dialogue, 40, 640);
+	ofDrawBitmapString(m_dialogue, 40, 690);
 }
 
 

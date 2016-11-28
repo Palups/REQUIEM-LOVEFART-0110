@@ -63,7 +63,6 @@ void GamePlay::update(GameManager *game)
 
 		case GAME_SIDE_B:
 			//se clicar no bilhete na parede, aparece a imagem dele maior. se clicar de novo, a imagem some
-			//ver depois
 			if (!m_showingNote) {
 				if (Note->MouseOver()) {
 					if(game->mousePressed)
@@ -110,7 +109,6 @@ void GamePlay::update(GameManager *game)
 
 void GamePlay::draw(GameManager *game)
 {
-	
 	/*-- switch case para cada dia de gameplay --*/
 	switch (game->m_day){
 	case 1:
@@ -128,6 +126,7 @@ void GamePlay::draw(GameManager *game)
 		case GAME_SIDE_B:
 			wall2.draw(0, 0);
 			Toilet->draw();
+			//Note->Draw();
 			Note->DrawImage();
 			changeSide->drawImage();
 			if (m_showingNote == true)
@@ -253,7 +252,8 @@ void GamePlay::MousePressed(int x, int y, int button, GameManager *game)
 	{
 		if (!dialogueActive)
 		{
-			if (Bed->WasClicked(x, y) || Door->WasClicked(x, y) || Toilet->WasClicked(x, y))
+			if ((Bed->WasClicked(x,y) && game->gameState == GAME_SIDE_A) || (Door->WasClicked(x,y) && game->gameState == GAME_SIDE_A) ||
+				(Toilet->WasClicked(x,y) && game->gameState == GAME_SIDE_B))
 			{
 				dialogueActive = true;
 				hud->Update();
