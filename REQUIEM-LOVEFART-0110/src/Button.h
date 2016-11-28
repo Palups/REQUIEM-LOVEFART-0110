@@ -27,14 +27,9 @@ public:
 	//int getH();  // retorn altura
 	void Reset(int object);
 
-	//int m_x;
-	//int m_y;
-	//int m_w; // largura
-	//int m_h; // altura
-
 /*-- Atributos --*/
 	ofImage m_image;
-	bool m_estado = true; // Interruptor, LIGADO(ON) ou DESLIGADO(OFF)
+	bool m_estado = true; // Interruptor, PRESSIONADO(ON) ou DESPRESSIONADO(OFF)
 	bool m_online = true; // Valido para as cameras, se tiver online funciona
 	bool m_drawIt; // Se vai desenhar o botao ou apenas detectar toque
 
@@ -48,9 +43,6 @@ public:
 	bool WasClicked(int x, int y);
 	bool GetState(int i);
 	int GetIndex();
-
-/*-- Metodos associados ao vetor de dialogos --*/
-
 
 private:
 

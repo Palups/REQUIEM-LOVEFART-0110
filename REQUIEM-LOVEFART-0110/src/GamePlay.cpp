@@ -27,9 +27,9 @@ void GamePlay::reset(GameManager *game)
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");*/
 
 	hud = new HUD();
-	Bed = new Button(100, 100, 100, 30, BED);
-	Door = new Button(100, 300, 100, 50, DOOR);
-	Toilet = new Button(100, 500, 100, 20, TOILET);
+	Bed = new Button(75, 550, 500, 100, BED);
+	Door = new Button(710, 292, 213, 385, DOOR);
+	Toilet = new Button(580, 546, 135, 145, TOILET);
 	Note = new Trigger();
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
 

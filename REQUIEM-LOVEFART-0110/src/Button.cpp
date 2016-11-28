@@ -48,12 +48,9 @@ Button::Button(int x, int y, int w, int h, int object)
 
 void Button::draw()
 {
-	if (m_drawIt)
-	{
-		ofSetColor(255, 255, 255, 0);
-		ofDrawRectangle(m_x - (m_w / 2), m_y - (m_h / 2), m_h, m_h);
-		ofSetColor(255, 255, 255, 255);		
-	}
+	ofSetColor(0, 0, 0, 255);
+	ofDrawRectangle(m_x /*- (m_w / 2)*/, m_y /*- (m_h / 2)*/, m_w, m_h);
+	ofSetColor(255, 255, 255, 255);
 }
 
 void Button::drawImage()
@@ -74,17 +71,6 @@ bool Button::mouseOver()
 	else
 		return false;
 }
-
-/*-- Getters --*/
-//int Button::getW()
-//{
-//	return m_w;
-//}
-//
-//int Button::getH()
-//{
-//	return m_h;
-//}
 
 void Button::Reset(int object)
 {
