@@ -4,6 +4,7 @@
 #include "Button.h"
 #include "Trigger.h"
 #include "HUD.h"
+#include "Objetivo.h"
 
 #define DIALOGUES 4 //numero de dialogos
 
@@ -44,6 +45,7 @@ private:
 	Button *Toilet;
 	Button *changeSide;
 	Trigger *Note;
+	Objetivo *objetivo;
 
 	int index;
 	bool

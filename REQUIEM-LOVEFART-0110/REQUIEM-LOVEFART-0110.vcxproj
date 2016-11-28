@@ -184,6 +184,7 @@
     <ClCompile Include="src\HUD.cpp" />
     <ClCompile Include="src\intObject.cpp" />
     <ClCompile Include="src\main.cpp" />
+    <ClCompile Include="src\Objetivo.cpp" />
     <ClCompile Include="src\ofApp.cpp" />
     <ClCompile Include="src\Trigger.cpp" />
   </ItemGroup>
@@ -196,6 +197,7 @@
     <ClInclude Include="src\GamePlay.h" />
     <ClInclude Include="src\HUD.h" />
     <ClInclude Include="src\intObject.h" />
+    <ClInclude Include="src\Objetivo.h" />
     <ClInclude Include="src\ofApp.h" />
     <ClInclude Include="src\Trigger.h" />
   </ItemGroup>

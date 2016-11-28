@@ -32,6 +32,7 @@ void GamePlay::reset(GameManager *game)
 	Toilet = new Button(580, 546, 135, 145, TOILET);
 	Note = new Trigger();
 	changeSide = new Button(990, 730, 100, 100, true, OFF, "images/btnChangeWall.png");
+	objetivo = new Objetivo;
 
 	triggerLock = false;
 	dialogueActive = false;
@@ -106,6 +107,7 @@ void GamePlay::update(GameManager *game)
 
 void GamePlay::draw(GameManager *game)
 {
+	
 	/*-- switch case para cada dia de gameplay --*/
 	switch (game->m_day){
 	case 1:
@@ -148,6 +150,7 @@ void GamePlay::draw(GameManager *game)
 	{
 		hud->Draw();
 	}
+	objetivo->Draw();
 }
 
 void GamePlay::MousePressed(int x, int y, int button, GameManager *game)
