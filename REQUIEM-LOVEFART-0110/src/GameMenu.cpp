@@ -20,6 +20,7 @@ void GameMenu::reset()
 {
 	btnPlay = new Button(512, 675, 113, 50, true, OFF, "images/menuBtnPlay.png"); //definindo posição do botão play
 	btnCredits = new Button(512, 730, 150, 50, true, OFF, "images/menuBtnCredits.png"); //definindo posição do botão dos créditos
+	ofSoundStopAll();
 }
 
 void GameMenu::update(GameManager *game)

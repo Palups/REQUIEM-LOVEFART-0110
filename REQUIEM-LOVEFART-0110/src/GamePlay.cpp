@@ -8,6 +8,9 @@ GamePlay::GamePlay(GameManager *game)
 	crack1.loadImage("images/Cenario2_desenho1.png"); //carrega imagem da rachadura do lado A
 	crack2.loadImage("images/Cenario2_desenho2.png"); //carrega imagem da rachadura do lado B
 
+	game->m_snd_door.loadSound("sounds/DoorRealOficial.wav"); //efeito sonoro ao clicar na porta
+	game->m_snd_door.setVolume(1.0);
+
 	reset(game);
 }
 
@@ -45,6 +48,8 @@ void GamePlay::reset(GameManager *game)
 	triggerLock = false;
 	dialogueActive = false;
 	index = 0;
+
+	ofSoundStopAll();
 }
 
 void GamePlay::update(GameManager *game)
@@ -70,6 +75,10 @@ void GamePlay::update(GameManager *game)
 			break;
 
 		case GAME_SIDE_A:
+			if (Door->mouseOver() && !game->m_snd_door.isPlaying())
+				if (game->mousePressed)
+					game->m_snd_door.play();
+
 			/*-- Muda o lado do quarto --*/ //objetos lado A: Cama e porta
 			if (changeSide->mouseOver())
 				if (game->mousePressed)

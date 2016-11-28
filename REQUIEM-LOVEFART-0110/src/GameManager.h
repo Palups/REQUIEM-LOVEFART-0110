@@ -34,6 +34,7 @@ public:
 
 	ofSoundPlayer m_snd_menu; //música do menu
 	ofSoundPlayer m_snd_gameplay; //música do gameplay
+	ofSoundPlayer m_snd_door; //efeito sonoro ao bater na porta
 
 
 	/*-- métodos --*/
