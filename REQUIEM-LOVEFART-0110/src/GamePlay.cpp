@@ -38,6 +38,8 @@ void GamePlay::reset(GameManager *game)
 	objetivo = new Objetivo();
 	trans = new Transicao();
 
+	//game->m_day = 1;
+
 	m_fimdodia = false; //set da variave fim do dia
 
 	triggerLock = false;
@@ -78,7 +80,7 @@ void GamePlay::update(GameManager *game)
 			//cricou no illuminati vc morreu
 			if (m_illuminati->mouseOver())
 				if (game->mousePressed)
-					game->gameSide = GAME_OVER;
+					game->gameState = GAME_OVER;
 
 			//se clicar no bilhete na parede, aparece a imagem dele maior. se clicar de novo, a imagem some
 			if (!m_showingNote) {
